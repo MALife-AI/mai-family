@@ -1,0 +1,499 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Ctext y=%22.9em%22 font-size=%2290%22%3E%F0%9F%A7%99%3C/text%3E%3C/svg%3E">
+<title>미래에셋 AI 패밀리 · 제품 소개</title>
+<style>
+  :root {
+    --font-sans: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", "Segoe UI", Roboto, sans-serif;
+    --font-mono: ui-monospace, "SF Mono", "Menlo", "Cascadia Mono", "Consolas", monospace;
+
+    /* light (base) */
+    --bg: #EEF1F7;
+    --bg-2: #FBFCFE;
+    --surface: #FFFFFF;
+    --surface-2: #F1F4FA;
+    --ink: #141D33;
+    --ink-muted: #4E5872;
+    --ink-faint: #838DA6;
+    --border: #DCE2EE;
+    --border-strong: #C3CBDD;
+    --accent: #D9540F;
+    --accent-fill: #F37021;
+    --accent-soft: #FBE7D9;
+    --hub-fill: #FBE7D9;
+    --arcane: #5B4CD1;
+    --good: #1C8F63;
+    --crit: #B71E2A;
+    --high: #8A5100;
+    --med: #6E5D00;
+    --shadow: 0 1px 2px rgba(20,29,51,.06), 0 8px 28px rgba(20,29,51,.06);
+    --grid-line: rgba(20,29,51,.05);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0B1120;
+      --bg-2: #0E1729;
+      --surface: #141E36;
+      --surface-2: #1A2440;
+      --ink: #E7EBF6;
+      --ink-muted: #9AA6C4;
+      --ink-faint: #6A7799;
+      --border: #24314F;
+      --border-strong: #35476E;
+      --accent: #FF9A57;
+      --accent-fill: #F5813C;
+      --accent-soft: rgba(245,129,60,.14);
+      --hub-fill: #332C37;
+      --arcane: #927FF8;
+      --good: #46C08A;
+      --crit: #FF6B75;
+      --high: #FFC94D;
+      --med: #E6CE6C;
+      --shadow: 0 1px 2px rgba(0,0,0,.3), 0 12px 34px rgba(0,0,0,.34);
+      --grid-line: rgba(255,255,255,.05);
+    }
+  }
+  :root[data-theme="light"] {
+    --bg: #EEF1F7; --bg-2: #FBFCFE; --surface: #FFFFFF; --surface-2: #F1F4FA;
+    --ink: #141D33; --ink-muted: #4E5872; --ink-faint: #838DA6;
+    --border: #DCE2EE; --border-strong: #C3CBDD;
+    --accent: #D9540F; --accent-fill: #F37021; --accent-soft: #FBE7D9; --hub-fill: #FBE7D9; --arcane: #5B4CD1;
+    --good: #1C8F63; --crit: #B71E2A; --high: #8A5100; --med: #6E5D00;
+    --shadow: 0 1px 2px rgba(20,29,51,.06), 0 8px 28px rgba(20,29,51,.06);
+    --grid-line: rgba(20,29,51,.05);
+  }
+  :root[data-theme="dark"] {
+    --bg: #0B1120; --bg-2: #0E1729; --surface: #141E36; --surface-2: #1A2440;
+    --ink: #E7EBF6; --ink-muted: #9AA6C4; --ink-faint: #6A7799;
+    --border: #24314F; --border-strong: #35476E;
+    --accent: #FF9A57; --accent-fill: #F5813C; --accent-soft: rgba(245,129,60,.14); --hub-fill: #332C37; --arcane: #927FF8;
+    --good: #46C08A; --crit: #FF6B75; --high: #FFC94D; --med: #E6CE6C;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 12px 34px rgba(0,0,0,.34);
+    --grid-line: rgba(255,255,255,.05);
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font-family: var(--font-sans); line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    background-image: radial-gradient(var(--grid-line) 1px, transparent 1px);
+    background-size: 26px 26px;
+  }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+  section { padding: 46px 0; border-top: 1px solid var(--border); }
+  section:first-of-type { border-top: 0; }
+
+  .eyebrow {
+    font-family: var(--font-mono); font-size: 12px; letter-spacing: .16em;
+    text-transform: uppercase; color: var(--accent); font-weight: 600;
+    display: flex; align-items: center; gap: 9px; margin: 0 0 14px;
+  }
+  .eyebrow::before { content: ""; width: 22px; height: 2px; background: var(--accent-fill); display: inline-block; }
+  h1 { font-size: clamp(30px, 5.2vw, 52px); line-height: 1.05; letter-spacing: -.02em;
+    font-weight: 800; margin: 0 0 18px; text-wrap: balance; }
+  h2 { font-size: clamp(21px, 3vw, 28px); letter-spacing: -.015em; font-weight: 800; margin: 0 0 8px; text-wrap: balance; }
+  h3 { font-size: 17px; font-weight: 700; margin: 0; letter-spacing: -.01em; }
+  .lede { font-size: clamp(16px, 2vw, 19px); color: var(--ink-muted); max-width: 64ch; margin: 0 0 8px; }
+  .sub { color: var(--ink-muted); max-width: 70ch; margin: 6px 0 0; }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  code, .mono { font-family: var(--font-mono); font-size: .9em; }
+  :focus-visible { outline: 2px solid var(--accent-fill); outline-offset: 2px; border-radius: 4px; }
+
+  /* hero */
+  .hero { padding-top: 56px; }
+  .hero-badge {
+    font-family: var(--font-mono); font-size: 11.5px; letter-spacing: .1em; color: var(--ink-muted);
+    border: 1px solid var(--border-strong); border-radius: 999px; padding: 5px 12px; display: inline-flex; gap: 8px; align-items: center;
+    background: var(--surface); margin-bottom: 22px;
+  }
+  .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--good); display: inline-block; }
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 30px; }
+  .stat { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 16px 18px; box-shadow: var(--shadow); }
+  .stat .n { font-family: var(--font-mono); font-size: 28px; font-weight: 700; letter-spacing: -.02em; font-variant-numeric: tabular-nums; }
+  .stat .n .u { font-size: 15px; color: var(--ink-faint); margin-left: 3px; }
+  .stat .l { font-size: 12.5px; color: var(--ink-muted); margin-top: 2px; }
+  .stat.accent .n { color: var(--accent); }
+
+  /* constellation */
+  .map-shell { background: linear-gradient(180deg, var(--bg-2), var(--surface)); border: 1px solid var(--border); border-radius: 20px; padding: 8px; box-shadow: var(--shadow); overflow: hidden; }
+  .map-scroll { overflow-x: auto; }
+  svg.map { display: block; width: 100%; min-width: 640px; height: auto; }
+  .legend { display: flex; flex-wrap: wrap; gap: 18px; margin-top: 16px; font-size: 13px; color: var(--ink-muted); }
+  .legend span { display: inline-flex; align-items: center; gap: 8px; }
+  .lg-line { width: 30px; height: 0; border-top: 2.5px solid var(--accent-fill); }
+  .lg-line.brand { border-top: 2.5px dashed var(--ink-faint); }
+  .lg-hub { width: 13px; height: 13px; border-radius: 50%; background: var(--accent-fill); }
+
+  .node-g { cursor: pointer; }
+  .node-c { fill: var(--surface); stroke: var(--border-strong); stroke-width: 1.5; transition: stroke .18s, filter .18s; }
+  .node-g:hover .node-c, .node-g:focus .node-c { stroke: var(--accent-fill); }
+  .node-hub .node-c { fill: var(--hub-fill); stroke: var(--accent-fill); stroke-width: 2.5; }
+  .node-name { font-family: var(--font-mono); font-weight: 700; fill: var(--ink); font-size: 17px; text-anchor: middle; letter-spacing: .02em; }
+  .node-hub .node-name { fill: var(--accent); font-size: 20px; }
+  .node-role { fill: var(--ink-muted); font-size: 11.5px; text-anchor: middle; font-family: var(--font-sans); }
+  .link { fill: none; stroke: var(--accent-fill); stroke-width: 2.4; opacity: .85; }
+  .link.brand { stroke: var(--ink-faint); stroke-width: 1.8; stroke-dasharray: 4 6; opacity: .6; }
+
+  /* product grid */
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(320px, 100%), 1fr)); gap: 16px; margin-top: 22px; }
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 20px; box-shadow: var(--shadow); display: flex; flex-direction: column; gap: 10px; scroll-margin-top: 20px; position: relative; }
+  .card::before { content: ""; position: absolute; left: 0; top: 18px; bottom: 18px; width: 3px; border-radius: 3px; background: var(--accent-fill); opacity: .0; transition: opacity .2s; }
+  .card:target::before, .card.hub::before { opacity: 1; }
+  .card:target { border-color: var(--accent-fill); }
+  .card-top { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; }
+  .card-name { font-family: var(--font-mono); font-weight: 700; font-size: 19px; letter-spacing: .01em; }
+  .card.hub .card-name { color: var(--accent); }
+  .acr { font-family: var(--font-mono); font-size: 11px; color: var(--ink-faint); letter-spacing: .01em; }
+  .role { color: var(--ink-muted); font-size: 14px; margin: 0; }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+  .chip { font-family: var(--font-mono); font-size: 11px; padding: 3px 8px; border-radius: 6px; background: var(--surface-2); border: 1px solid var(--border); color: var(--ink-muted); }
+  .chip.fork { color: var(--arcane); border-color: color-mix(in srgb, var(--arcane) 40%, var(--border)); }
+  .kv { display: flex; gap: 8px; font-size: 12.5px; color: var(--ink-faint); font-family: var(--font-mono); flex-wrap: wrap; }
+  .kv b { color: var(--ink-muted); font-weight: 600; }
+  .fact { font-size: 13.5px; color: var(--ink); border-top: 1px dashed var(--border-strong); padding-top: 10px; margin-top: 2px; }
+  .fact b { color: var(--accent); font-weight: 700; }
+
+  /* flow */
+  .flow { display: grid; gap: 12px; margin-top: 18px; }
+  .flow-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 14px 16px; box-shadow: var(--shadow); }
+  .pill { font-family: var(--font-mono); font-size: 12.5px; font-weight: 600; padding: 5px 11px; border-radius: 8px; background: var(--surface-2); border: 1px solid var(--border-strong); white-space: nowrap; }
+  .pill.hub { background: var(--accent-soft); border-color: var(--accent-fill); color: var(--accent); }
+  .arrow { font-family: var(--font-mono); color: var(--accent); font-weight: 700; }
+  .flow-note { font-size: 12.5px; color: var(--ink-muted); font-family: var(--font-mono); }
+
+  /* patterns */
+  .cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin-top: 20px; }
+  .pat { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 18px; box-shadow: var(--shadow); }
+  .pat .n { font-family: var(--font-mono); font-size: 12px; color: var(--accent); font-weight: 700; }
+  .pat h3 { margin: 8px 0 6px; }
+  .pat p { margin: 0; font-size: 13.5px; color: var(--ink-muted); }
+
+  /* table */
+  .tbl-scroll { overflow-x: auto; margin-top: 20px; border: 1px solid var(--border); border-radius: 14px; box-shadow: var(--shadow); }
+  table { border-collapse: collapse; width: 100%; min-width: 680px; background: var(--surface); font-size: 13.5px; }
+  th, td { text-align: left; padding: 12px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  thead th { font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: .08em; color: var(--ink-faint); background: var(--surface-2); position: sticky; top: 0; }
+  tbody tr:last-child td { border-bottom: 0; }
+  td.mono, th.mono { font-family: var(--font-mono); }
+  .sev { font-family: var(--font-mono); font-size: 10.5px; font-weight: 700; letter-spacing: .05em; padding: 3px 8px; border-radius: 999px; white-space: nowrap; display: inline-block; }
+  .sev.crit { color: var(--crit); background: color-mix(in srgb, var(--crit) 14%, transparent); border: 1px solid color-mix(in srgb, var(--crit) 45%, transparent); }
+  .sev.high { color: var(--high); background: color-mix(in srgb, var(--high) 14%, transparent); border: 1px solid color-mix(in srgb, var(--high) 45%, transparent); }
+  .sev.med { color: var(--med); background: color-mix(in srgb, var(--med) 14%, transparent); border: 1px solid color-mix(in srgb, var(--med) 45%, transparent); }
+  .status { font-family: var(--font-mono); font-size: 11px; font-weight: 700; }
+  .status.open { color: var(--crit); }
+  .status.fixed { color: var(--good); }
+  .verified { font-family: var(--font-mono); font-size: 10.5px; color: var(--good); border: 1px solid color-mix(in srgb, var(--good) 45%, transparent); border-radius: 999px; padding: 2px 7px; }
+
+  /* good controls */
+  .goods { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 12px; margin-top: 20px; }
+  .goodc { background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--good); border-radius: 10px; padding: 13px 15px; box-shadow: var(--shadow); }
+  .goodc b { display: block; font-family: var(--font-mono); font-size: 13px; margin-bottom: 3px; }
+  .goodc span { font-size: 12.5px; color: var(--ink-muted); }
+
+  /* debt */
+  .caveat { background: color-mix(in srgb, var(--high) 9%, var(--surface)); border: 1px solid color-mix(in srgb, var(--high) 38%, var(--border)); border-radius: 12px; padding: 15px 17px; margin-top: 16px; }
+  .caveat b { color: var(--high); font-family: var(--font-mono); font-size: 13px; }
+  .caveat p { margin: 6px 0 0; font-size: 13.5px; color: var(--ink-muted); }
+  .branch-tag { font-family: var(--font-mono); font-size: 12px; background: var(--surface-2); border: 1px solid var(--border-strong); border-radius: 7px; padding: 4px 9px; color: var(--ink-muted); }
+
+  footer { border-top: 1px solid var(--border); padding: 30px 0 60px; color: var(--ink-faint); font-size: 12.5px; font-family: var(--font-mono); }
+
+  @media (max-width: 720px) {
+    .stats { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    :root.js .reveal { opacity: 0; transform: translateY(14px); transition: opacity .6s ease, transform .6s ease; }
+    :root.js .reveal.in { opacity: 1; transform: none; }
+  }
+
+  /* product decks section */
+  .decks-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px;margin-top:8px}
+  a.deck-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:18px 18px 16px;box-shadow:var(--shadow);text-decoration:none;color:inherit;display:flex;flex-direction:column;gap:6px;transition:transform .15s,border-color .15s,box-shadow .15s}
+  a.deck-card:hover{transform:translateY(-3px);border-color:var(--accent-fill);box-shadow:0 10px 26px rgba(20,29,51,.12)}
+  a.deck-card .dk-nm{font-family:var(--font-mono);font-weight:700;font-size:16px;color:var(--ink);display:flex;align-items:center;gap:8px}
+  a.deck-card .dk-tag{font-size:12px;color:var(--accent);font-weight:600}
+  a.deck-card .dk-ds{font-size:13px;color:var(--ink-muted);line-height:1.45}
+  a.deck-card .dk-new{font-size:10px;font-weight:700;color:#fff;background:var(--accent-fill);border-radius:5px;padding:1px 6px;margin-left:auto}
+
+  .map .link.collab{stroke:var(--accent-fill);stroke-width:2;stroke-dasharray:2 6;opacity:.75;fill:none}
+  .map .node-collab .node-c{fill:var(--accent-soft);stroke:var(--accent-fill);stroke-width:2}
+  .map .node-collab .node-name{fill:var(--accent)}
+</style>
+</head>
+<body>
+
+
+<script>document.documentElement.className += ' js';</script>
+
+<div class="wrap">
+
+  <section class="hero">
+    <span class="hero-badge"><span class="dot"></span> MALife-AI · 미래에셋 AI 패밀리</span>
+    <p class="eyebrow">미래에셋 AI 패밀리 / mai-family</p>
+    <h1>10개의 브랜드, 하나의 패밀리.<br>사내 업무를 잇는 AI·협업·개발 플랫폼.</h1>
+    <p class="lede">마법 테마의 이름을 가진 <b>10개 제품</b>의 묶음입니다 — 지식 관문 <b>MAGE</b>를 중심으로, 일손을 돕는 AI 도구(MAGIC·MOJO·MERLIN), 분석·학습·활용(MYSTIC·MARK·MANA), 그리고 일하는 공간 — 지식·문서 <b>MESH</b>(노션형)·대화·협업 <b>MAGNET</b>(슬랙형)·사내 Git 플랫폼 <b>MAGMA</b>(GitLab+GitKraken)까지. 모두 <b>폐쇄망 전용</b>으로, 코드·자료가 회사 밖으로 나가지 않습니다.</p>
+    <div class="stats">
+      <div class="stat accent"><div class="n">10<span class="u">개 제품</span></div><div class="l">AI 7 + 협업 2 + 개발 플랫폼 1(MAGMA)</div></div>
+      <div class="stat"><div class="n">1<span class="u">개 관문</span></div><div class="l">MAGE 중심의 사내 AI 게이트웨이</div></div>
+      <div class="stat"><div class="n">100%<span class="u">폐쇄망</span></div><div class="l">외부 통신 차단이 기본값</div></div>
+      <div class="stat"><div class="n">3<span class="u">개 영역</span></div><div class="l">AI 도우미 · 분석/활용 · 협업/개발</div></div>
+    </div>
+  </section>
+
+  <section id="decks">
+    <p class="eyebrow">제품 소개 발표자료 · 경영진용</p>
+    <h2>클릭하면 각 제품 발표자료가 열립니다</h2>
+    <p class="lede" style="margin-bottom:6px">자기완결형 HTML 슬라이드(폰트·로고·실제 화면 내장, 오프라인·폐쇄망 OK). ← → 로 넘깁니다.</p>
+    <div class="decks-grid">
+      <a class="deck-card" href="decks/mai-family-combined.html" target="_blank" style="grid-column:span 2;border-color:var(--accent-fill)"><span class="dk-nm">📖 제품 상세 통합본<span class="dk-new">ALL</span></span><span class="dk-tag">9제품 전체를 하나의 덱으로 · 56슬라이드</span><span class="dk-ds">패밀리 오프닝 → 제품별 심화(기능·실제 화면·활용) → 배포·요약. 처음부터 끝까지 한 흐름으로 발표.</span></a>
+      <a class="deck-card" href="mai-family-deck.html" target="_blank"><span class="dk-nm">🧙 패밀리 종합</span><span class="dk-tag">전체 개요</span><span class="dk-ds">9개 제품을 한 흐름으로 · 실제 화면 갤러리 포함</span></a>
+      <a class="deck-card" href="decks/mage.html" target="_blank"><span class="dk-nm">MAGE</span><span class="dk-tag">지식 관문</span><span class="dk-ds">사내 문서를 모으고 찾는 중심 · 실제 화면 4장</span></a>
+      <a class="deck-card" href="decks/dev-tools.html" target="_blank"><span class="dk-nm">일손을 돕는 AI</span><span class="dk-tag">MAGIC·MOJO·MERLIN</span><span class="dk-ds">데스크톱·터미널·개발도구 3종 · 실제 화면 포함</span></a>
+      <a class="deck-card" href="decks/mystic.html" target="_blank"><span class="dk-nm">MYSTIC</span><span class="dk-tag">대시보드 챗봇</span><span class="dk-ds">말로 묻는 인사이트 · 실제 위젯 화면</span></a>
+      <a class="deck-card" href="decks/mark.html" target="_blank"><span class="dk-nm">MARK</span><span class="dk-tag">학습 엔진</span><span class="dk-ds">스스로 배우는 품질 커널</span></a>
+      <a class="deck-card" href="decks/mana.html" target="_blank"><span class="dk-nm">MANA</span><span class="dk-tag">활용 아카이브</span><span class="dk-ds">필요한 AI 기능을 꺼내 쓰기 · 마켓플레이스 화면</span></a>
+      <a class="deck-card" href="decks/mesh.html" target="_blank"><span class="dk-nm">📚 MESH<span class="dk-new">NEW</span></span><span class="dk-tag">지식·문서 (사내 노션)</span><span class="dk-ds">문서·핸드북 허브 · 편집 화면</span></a>
+      <a class="deck-card" href="decks/magnet.html" target="_blank"><span class="dk-nm">💬 MAGNET<span class="dk-new">NEW</span></span><span class="dk-tag">대화·협업 (사내 슬랙)</span><span class="dk-ds">채널·스레드 협업 · 대화 화면</span></a>
+      <a class="deck-card" href="decks/magma.html" target="_blank"><span class="dk-nm">🌋 MAGMA<span class="dk-new">NEW</span></span><span class="dk-tag">Git 플랫폼 (깃랩+깃크라켄)</span><span class="dk-ds">서버·클라이언트 · 실제 화면 2종</span></a>
+    </div>
+  </section>
+
+
+
+  <section>
+    <p class="eyebrow">패밀리 지도 · Family Map</p>
+    <h2>MAGE 지식 관문을 중심으로 모이는 10개 제품</h2>
+    <p class="sub">각 노드를 누르면 해당 제품 카드로 이동합니다. 사내 AI 도구는 <b>MAGE</b> 게이트웨이를 통해 사내 sLLM에 연결되고, 협업·개발 제품(MESH·MAGNET·MAGMA)이 일하는 공간을 채웁니다.</p>
+    <div class="map-shell reveal">
+      <div class="map-scroll">
+        <svg class="map" viewBox="0 0 820 560" role="img" aria-label="미래에셋 AI 패밀리 연동 다이어그램: MAGE 허브 중심의 별 모양 구조">
+          <!-- links -->
+          <line class="link" x1="560" y1="260" x2="404" y2="260"></line>
+          <line class="link" x1="712" y1="260" x2="600" y2="260"></line>
+          <line class="link" x1="498" y1="150" x2="392" y2="228"></line>
+          <line class="link brand" x1="362" y1="430" x2="378" y2="308"></line>
+          <line class="link brand" x1="192" y1="372" x2="340" y2="278"></line>
+          <line class="link brand" x1="188" y1="158" x2="342" y2="242"></line>
+          <!-- 협업 레이어(신규): AI 기능은 MAGE 게이트웨이 연동 -->
+          <line class="link collab" x1="596" y1="368" x2="414" y2="290"></line>
+          <line class="link collab" x1="688" y1="406" x2="636" y2="406"></line>
+
+          <!-- hub: MAGE -->
+          <a href="#card-mage" class="node-g node-hub" aria-label="MAGE — 거버넌스 엔진, 허브">
+            <circle class="node-c" cx="380" cy="260" r="54"></circle>
+            <text class="node-name" x="380" y="258">MAGE</text>
+            <text class="node-role" x="380" y="278">거버넌스 엔진</text>
+          </a>
+
+          <!-- MOJO -->
+          <a href="#card-mojo" class="node-g" aria-label="MOJO — 코딩 CLI">
+            <circle class="node-c" cx="600" cy="260" r="42"></circle>
+            <text class="node-name" x="600" y="258">MOJO</text>
+            <text class="node-role" x="600" y="277">코딩 CLI</text>
+          </a>
+          <!-- MERLIN -->
+          <a href="#card-merlin" class="node-g" aria-label="MERLIN — IDE 플러그인">
+            <circle class="node-c" cx="754" cy="260" r="42"></circle>
+            <text class="node-name" x="754" y="258">MERLIN</text>
+            <text class="node-role" x="754" y="277">IDE 플러그인</text>
+          </a>
+          <!-- MAGIC -->
+          <a href="#card-magic" class="node-g" aria-label="MAGIC — 데스크톱 비서">
+            <circle class="node-c" cx="486" cy="126" r="42"></circle>
+            <text class="node-name" x="486" y="124">MAGIC</text>
+            <text class="node-role" x="486" y="143">데스크톱 비서</text>
+          </a>
+          <!-- MYSTIC -->
+          <a href="#card-mystic" class="node-g" aria-label="MYSTIC — Tableau 챗봇">
+            <circle class="node-c" cx="360" cy="456" r="42"></circle>
+            <text class="node-name" x="360" y="454">MYSTIC</text>
+            <text class="node-role" x="360" y="473">Tableau 챗봇</text>
+          </a>
+          <!-- MARK -->
+          <a href="#card-mark" class="node-g" aria-label="MARK — 재학습 커널">
+            <circle class="node-c" cx="152" cy="380" r="42"></circle>
+            <text class="node-name" x="152" y="378">MARK</text>
+            <text class="node-role" x="152" y="397">재학습 커널</text>
+          </a>
+          <!-- MANA -->
+          <a href="#card-mana" class="node-g" aria-label="MANA — 스킬팩">
+            <circle class="node-c" cx="150" cy="148" r="42"></circle>
+            <text class="node-name" x="150" y="146">MANA</text>
+            <text class="node-role" x="150" y="165">스킬팩</text>
+          </a>
+          <!-- MESH (신규) -->
+          <a href="#card-mesh" class="node-g node-collab" aria-label="MESH — 지식·문서 허브(사내 노션)">
+            <circle class="node-c" cx="596" cy="406" r="40"></circle>
+            <text class="node-name" x="596" y="404">MESH</text>
+            <text class="node-role" x="596" y="423">지식·문서</text>
+          </a>
+          <!-- MAGNET (신규) -->
+          <a href="#card-magnet" class="node-g node-collab" aria-label="MAGNET — 대화·협업(사내 슬랙)">
+            <circle class="node-c" cx="726" cy="406" r="40"></circle>
+            <text class="node-name" x="726" y="404">MAGNET</text>
+            <text class="node-role" x="726" y="423">대화·협업</text>
+          </a>
+          <!-- MAGMA (신규 · 개발 플랫폼) -->
+          <line class="link collab" x1="628" y1="500" x2="700" y2="300"></line>
+          <a href="#card-magma" class="node-g node-collab" aria-label="MAGMA — Git 호스팅·CI/CD 플랫폼">
+            <circle class="node-c" cx="628" cy="500" r="38"></circle>
+            <text class="node-name" x="628" y="498">MAGMA</text>
+            <text class="node-role" x="628" y="517">Git·CI/CD</text>
+          </a>
+        </svg>
+      </div>
+    </div>
+    <div class="legend">
+      <span><span class="lg-hub"></span> MAGE = 지식 관문(허브)</span>
+      <span><span class="lg-line"></span> AI 도구</span>
+      <span><span class="lg-line brand"></span> 분석·학습·활용</span>
+      <span><span class="lg-line collab" style="border-color:var(--accent-fill)"></span> 협업·개발 (신규)</span>
+    </div>
+  </section>
+
+  <section>
+    <p class="eyebrow">제품군 · The Seven</p>
+    <h2>각 제품의 정체와 스택</h2>
+    <div class="grid">
+
+      <article class="card hub" id="card-mage">
+        <div class="card-top"><span class="card-name">MAGE</span><span class="chip">허브</span></div>
+        <div class="acr">MiraeAsset AI Governance Engine</div>
+        <p class="role">사내 문서·AI·에이전트를 안전하게 다루는 서버 플랫폼. 문서 인제스트→GraphRAG→에이전트 추론을 사내에서 처리하고 IAM·DLP·감사를 강제하는 거버넌스 엔진.</p>
+        <div class="chips"><span class="chip">Python 3.11</span><span class="chip">FastAPI</span><span class="chip">LangGraph</span><span class="chip">ChromaDB</span><span class="chip">NetworkX</span><span class="chip">vLLM·litellm</span></div>
+        <p class="fact"><b>패밀리의 중심 관문</b> — 사내 AI 도구가 연결되는 게이트웨이와 도구 표준(MCP)을 제공하고, IAM·DLP·감사를 강제.</p>
+      </article>
+
+      <article class="card" id="card-magic">
+        <div class="card-top"><span class="card-name">MAGIC</span><span class="chip">데스크톱</span></div>
+        <div class="acr">MiraeAsset AI Generative Intelligence Console</div>
+        <p class="role">직원용 데스크톱 AI 비서. VDI 친화적 Tauri 셸로 사내 MAGE 서버에 연결해, 문서·업무를 대화로 처리.</p>
+        <div class="chips"><span class="chip">Rust</span><span class="chip">Tauri 2</span><span class="chip">React·Vite</span></div>
+        <p class="fact">가벼운 데스크톱 셸 + <b>MAGE 연동 브리지</b>로 사내 AI를 바로 손에.</p>
+      </article>
+
+      <article class="card" id="card-mojo">
+        <div class="card-top"><span class="card-name">MOJO</span><span class="chip">터미널</span></div>
+        <div class="acr">MiraeAsset On-prem Job Operator</div>
+        <p class="role">사내 AI 코딩 CLI. 터미널에서 코드를 읽고 고치고 실행 — MERLIN 브리지와 MAGE 게이트웨이로 사내 sLLM에 연결.</p>
+        <div class="chips"><span class="chip">TypeScript</span><span class="chip">Node ≥22</span><span class="chip">React·Ink</span></div>
+        <p class="fact">사용자 키가 밖으로 새지 않도록 <b>자격증명을 봉인</b>하고 사내 게이트웨이로만 추론.</p>
+      </article>
+
+      <article class="card" id="card-merlin">
+        <div class="card-top"><span class="card-name">MERLIN</span><span class="chip">자체 개발</span></div>
+        <div class="acr">MiraeAsset Eclipse Reasoning LLM INtegration</div>
+        <p class="role">Eclipse/PRO-frame IDE 임베디드 AI 코딩 위저드. 레거시 제약(JDK 1.6 · Eclipse 3.7) 위에 RAG+tool use+diff 수락을 이식.</p>
+        <div class="chips"><span class="chip">Java · JDK 1.6</span><span class="chip">Eclipse 3.7</span><span class="chip">Lucene 4.10</span><span class="chip">sqlite</span></div>
+        <div class="kv"><span><b>규모</b> ~21.8K LOC</span></div>
+        <p class="fact">패밀리 유일 순수 자체 개발. <b>MERLIN→MOJO(서브프로세스)→MAGE</b> 경로로 연동.</p>
+      </article>
+
+      <article class="card" id="card-mystic">
+        <div class="card-top"><span class="card-name">MYSTIC</span><span class="chip">분석</span></div>
+        <div class="acr">MiraeAsset Yield-aware Smart Tableau Insight Chatbot</div>
+        <p class="role">Tableau 대시보드 위 플로팅 챗봇(Chrome 확장) + FastAPI + Tableau MCP 서버. 사내망 오프라인 배포 전제.</p>
+        <div class="chips"><span class="chip">Python</span><span class="chip">FastAPI</span><span class="chip">Tableau MCP</span><span class="chip">Chrome 확장</span></div>
+        <p class="fact">대시보드를 <b>말로 묻는</b> 인사이트 — Tableau 화면 위에서 바로 질의응답.</p>
+      </article>
+
+      <article class="card" id="card-mark">
+        <div class="card-top"><span class="card-name">MARK</span><span class="chip">학습</span></div>
+        <div class="acr">MiraeAsset AI Adaptive Retraining Kernel</div>
+        <p class="role">이름과 달리 LLM 재학습이 아니라 <b>concept-drift 온라인 학습 라이브러리</b>. numpy 단일 의존성의 소형 연구 증류물.</p>
+        <div class="chips"><span class="chip">Python</span><span class="chip">numpy only</span><span class="chip">MCP stdio</span></div>
+        <p class="fact">가벼운 <b>concept-drift 온라인 학습</b> 라이브러리 — 변화하는 데이터에 모델을 맞춰가는 커널.</p>
+      </article>
+
+      <article class="card" id="card-mana">
+        <div class="card-top"><span class="card-name">MANA</span><span class="chip">활용</span></div>
+        <div class="acr">Mirae Agent &amp; Network Archive</div>
+        <p class="role">Claude Code 스킬팩 — 에이전트·스킬·룰·커맨드를 <code>~/.claude/</code>에 원라인 설치. 실제 연결점은 패밀리가 아니라 Claude Code.</p>
+        <div class="chips"><span class="chip">Markdown</span><span class="chip">Bash·PowerShell</span><span class="chip">Python 유틸</span></div>
+        <div class="kv"><span><b>구성</b> 에이전트 141 · 스킬 18</span></div>
+        <p class="fact">필요한 AI 기능을 <b>원라인으로 설치</b> — 에이전트·스킬·룰·커맨드를 꺼내 쓰는 아카이브.</p>
+      </article>
+
+      <article class="card" id="card-mesh">
+        <div class="card-top"><span class="card-name">MESH</span><span class="chip fork">신규 · 협업</span></div>
+        <div class="acr">Mirae Enterprise Sync &amp; Handbook · 사내 노션</div>
+        <p class="role">지식·문서 허브. <b>BlockNote</b> 기반 자체 구축(외부 SaaS·CDN 미의존), 문서·위키·핸드북을 폐쇄망에서 작성·공유. AI 요약·검색은 <b>MAGE</b> 게이트웨이 연동.</p>
+        <div class="chips"><span class="chip">Next.js 15 · React 19</span><span class="chip">BlockNote</span><span class="chip self">폐쇄망 전용</span></div>
+        <div class="kv"><span><b>저장</b> 로컬 JSON · <b>AI</b> openai-compatible</span></div>
+        <p class="fact">외부 SaaS·CDN에 기대지 않는 <b>자체 구축 문서 허브</b> — 폐쇄망에서 작성·검색·공유.</p>
+      </article>
+
+      <article class="card" id="card-magnet">
+        <div class="card-top"><span class="card-name">MAGNET</span><span class="chip fork">신규 · 협업</span></div>
+        <div class="acr">Mirae Async Group Network &amp; Event Threads · 사내 슬랙</div>
+        <p class="role">대화·협업 메신저. <b>Rocket.Chat</b>(MIT) 사내 리브랜딩, 채널·스레드·DM. <code>/ai</code> 질의응답·채널 요약은 사내 LLM 게이트웨이 연동.</p>
+        <div class="chips"><span class="chip">Rocket.Chat · Meteor</span><span class="chip">브랜드 리스킨</span><span class="chip self">폐쇄망 전용</span></div>
+        <div class="kv"><span><b>AI</b> /ai ask·요약 · <b>차단</b> 클라우드 등록/업데이트/푸시</span></div>
+        <p class="fact">air-gapped 기본값 — 클라우드 등록·업데이트 체크·푸시·통계 전송을 소스/compose에서 전부 off.</p>
+      </article>
+
+      <article class="card" id="card-magma">
+        <div class="card-top"><span class="card-name">MAGMA</span><span class="chip fork">신규 · 개발</span></div>
+        <div class="acr">Mirae Automated Git, Merge &amp; Artifacts · 사내 Git 플랫폼</div>
+        <p class="role">두 축 — <b>서버</b>(GitLab 벤치마크, Forgejo 기반: Git 호스팅·MR·CI/CD·레지스트리)와 <b>클라이언트</b>(GitKraken 벤치마크, Tauri 기반: 커밋 그래프 GUI). 소스→머지→빌드→아티팩트.</p>
+        <div class="chips"><span class="chip">Forgejo/Gitea</span><span class="chip">Tauri 데스크톱</span><span class="chip self">폐쇄망 전용</span></div>
+        <div class="kv"><span><b>서버</b> docker-compose(air-gapped) · <b>클라이언트</b> .exe</span></div>
+        <p class="fact">코드·파이프라인·아티팩트 모두 사내에서만 — 외부 egress·업데이트·텔레메트리 off. 스캐폴딩 <code>server/</code>·<code>client/</code> 커밋됨.</p>
+      </article>
+
+    </div>
+  </section>
+
+  <section>
+    <p class="eyebrow">공통 설계 · Shared DNA</p>
+    <h2>패밀리 전반을 관통하는 4가지 철학</h2>
+    <div class="cols">
+      <div class="pat"><div class="n">01</div><h3>폐쇄망 제일주의</h3><p>전 제품이 외부 API를 쓰지 않고 사내 게이트웨이로만 추론을 라우팅. 코드·자료가 밖으로 나가지 않는 게 공통 셀링포인트.</p></div>
+      <div class="pat"><div class="n">02</div><h3>하나의 관문</h3><p>MAGE가 사내 AI 도구들이 말을 거는 공통 규격을 제공 — 이질적 클라이언트를 하나로 묶는 접착제.</p></div>
+      <div class="pat"><div class="n">03</div><h3>MCP 통일</h3><p>도구·확장 표준을 MCP로 통일해 제품 간 확장을 일관되게 연결.</p></div>
+      <div class="pat"><div class="n">04</div><h3>거버넌스 내장</h3><p>IAM·DLP·감사·스킬 검수를 관문에 내장 — 안전하게 다루는 것이 기본값.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <p class="eyebrow">공통 강점 · By Design</p>
+    <h2>패밀리가 공유하는 설계 강점</h2>
+    <div class="goods">
+      <div class="goodc"><b>폐쇄망 전용</b><span>외부 egress·업데이트·텔레메트리 차단이 기본값 — 코드·자료가 사내에 머뭅니다.</span></div>
+      <div class="goodc"><b>하나의 관문</b><span>사내 AI 도구가 MAGE 게이트웨이로 모여 일관된 규격으로 사내 sLLM에 연결.</span></div>
+      <div class="goodc"><b>거버넌스 내장</b><span>IAM·DLP·감사가 관문에 내장 — 접근 통제와 활동 기록이 기본.</span></div>
+      <div class="goodc"><b>자격증명 봉인</b><span>사용자 키가 사내 게이트웨이로 새지 않도록 설계.</span></div>
+      <div class="goodc"><b>MCP 표준</b><span>도구·확장을 MCP로 통일해 제품 간 연결을 일관되게.</span></div>
+      <div class="goodc"><b>스킬 검수 게이트</b><span>스킬 저작 → 관리자 검수 → 노출의 승인 흐름.</span></div>
+    </div>
+  </section>
+
+  <footer>
+    미래에셋 AI 패밀리 · MALife-AI/{MAGE · MAGIC · MOJO · MERLIN · MYSTIC · MARK · MANA · MESH · MAGNET · MAGMA}<br>
+    10개 제품 · 폐쇄망 전용 · 사내 AI·협업·개발 플랫폼
+  </footer>
+
+</div>
+
+<script>
+  (function () {
+    var els = document.querySelectorAll('.reveal');
+    if (!('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      els.forEach(function (e) { e.classList.add('in'); });
+      return;
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
+    }, { threshold: 0.15 });
+    els.forEach(function (e) { io.observe(e); });
+  })();
+</script>
+
+</body>
+</html>
