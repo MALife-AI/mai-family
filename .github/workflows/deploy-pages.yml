@@ -1,0 +1,42 @@
+name: Deploy static site to GitHub Pages
+
+on:
+  # main에 push될 때마다 배포
+  push:
+    branches: [main]
+  # Actions 탭에서 수동 실행도 허용
+  workflow_dispatch:
+
+# GITHUB_TOKEN이 Pages에 배포할 수 있도록 권한 부여
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# 동시 배포 1건만 유지 (진행 중 배포는 취소하지 않음)
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # 저장소 루트를 그대로 정적 사이트로 배포 (index.html, decks/ 등)
+          path: '.'
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
