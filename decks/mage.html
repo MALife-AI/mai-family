@@ -402,6 +402,22 @@
     60%{ opacity:0 }
     100%{ opacity:0; transform:translate3d(var(--lx,-70vw),var(--ly,7vh),var(--lz,-460px)) rotateY(var(--lyaw,14deg)) rotateZ(var(--lroll,-3deg)) } }
   @media(prefers-reduced-motion:reduce){ .slide.active,.slide.leaving{ animation:none!important; transform:none!important } }
+
+  /* ── 모바일 가독성 (세로 화면) ──
+     16:9 슬라이드 기준의 --su(=min(1vh,.5625vw))는 세로 폰에서 .5625vw가 지나치게
+     작아져 본문 글씨가 뭉개진다. 세로 화면에서는 --su를 화면 너비 기준으로 키워
+     읽기 좋은 크기로 만들고, 커진 콘텐츠가 잘리지 않도록 슬라이드를 세로 스크롤 허용. */
+  @media(max-width:768px){
+    :root{ --su: clamp(5.5px, 2.5vw, 9px); }
+    .slide{
+      justify-content:flex-start;
+      overflow-y:auto; overflow-x:hidden;
+      -webkit-overflow-scrolling:touch;
+      padding:15vw 7vw 20vw;
+    }
+    /* 세로 화면에서 항상 1열로 펴서 각 칸이 충분히 커지도록 */
+    .feat,.three,.gal,.grid2,.stats,.imp{ grid-template-columns:1fr }
+  }
 </style>
 
 <div class="progress" id="prog"></div>
