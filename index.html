@@ -1082,7 +1082,7 @@
     dotEls.forEach(function(d,x){d.classList.toggle('on',x===i)});
     if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){ countUp(s); flowEnergy(s); }
   }
-  function next(){go(i+1)} function prev(){go(i-1)}
+  function next(){go(i+1)} function prev(){go(i-1)} window.__deckGo=go;
   document.addEventListener('keydown',function(e){
     if(e.key==='ArrowRight'||e.key==='PageDown'||e.key===' '){e.preventDefault();next()}
     else if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();prev()}
@@ -1148,4 +1148,88 @@
   try{ new MutationObserver(function(){ var a=document.querySelector('.slide.active'); if(a&&a!==last){ last=a; burst(); } }).observe(deck,{attributes:true,subtree:true,attributeFilter:['class']}); }catch(e){}
 })();
 </script>
-
+<!--DECKMENU-->
+<style>
+#dm-btn{position:fixed;top:calc(2*var(--su,10px));left:calc(2*var(--su,10px));z-index:1000;
+  width:calc(5.4*var(--su,10px));height:calc(5.4*var(--su,10px));min-width:42px;min-height:42px;border:none;
+  border-radius:calc(1.3*var(--su,10px));background:rgba(20,30,54,.82);backdrop-filter:blur(6px);
+  -webkit-backdrop-filter:blur(6px);color:#E9EDF8;cursor:pointer;display:flex;align-items:center;justify-content:center;
+  box-shadow:0 2px 12px rgba(0,0,0,.45);transition:background .2s,transform .2s}
+#dm-btn:hover{background:rgba(34,49,79,.96);transform:translateY(-1px)}
+#dm-btn svg{width:52%;height:52%}
+#dm-back{position:fixed;inset:0;z-index:999;background:rgba(4,8,18,.55);opacity:0;visibility:hidden;transition:opacity .25s}
+#dm-back.open{opacity:1;visibility:visible}
+#dm-panel{position:fixed;top:0;left:0;z-index:1001;height:100%;width:300px;max-width:82vw;
+  background:linear-gradient(180deg,#0E1729,#141E36);border-right:1px solid #24314F;box-shadow:10px 0 40px rgba(0,0,0,.55);
+  transform:translateX(-101%);transition:transform .32s cubic-bezier(.3,.72,.2,1);display:flex;flex-direction:column}
+#dm-panel.open{transform:none}
+#dm-panel .dm-head{padding:22px 24px 14px;border-bottom:1px solid #1E2A46;position:relative}
+#dm-panel .dm-ey{font:600 11px/1 ui-monospace,monospace;letter-spacing:.16em;color:#F5813C;text-transform:uppercase}
+#dm-panel .dm-ttl{font:800 18px/1.25 -apple-system,"Apple SD Gothic Neo",sans-serif;color:#E9EDF8;margin-top:6px;letter-spacing:-.01em}
+#dm-x{position:absolute;top:16px;right:16px;width:32px;height:32px;border:none;background:rgba(255,255,255,.06);border-radius:8px;
+  color:#9AA6C4;cursor:pointer;font-size:18px;line-height:1;display:flex;align-items:center;justify-content:center}
+#dm-x:hover{background:rgba(255,255,255,.12);color:#fff}
+#dm-list{overflow-y:auto;flex:1;padding:10px 12px 18px}
+.dm-item{display:flex;gap:12px;align-items:center;width:100%;text-align:left;border:none;background:transparent;color:#C7D0E6;
+  font:600 15px/1.3 -apple-system,"Apple SD Gothic Neo",sans-serif;padding:11px 12px;border-radius:11px;cursor:pointer;
+  transition:background .15s,color .15s}
+.dm-item:hover{background:rgba(245,129,60,.13);color:#fff}
+.dm-item.on{background:rgba(245,129,60,.2);color:#fff}
+.dm-item .dm-n{font:700 12px/1 ui-monospace,monospace;color:#F5813C;min-width:22px;text-align:right;opacity:.9}
+.dm-item .dm-sub{display:block;font:500 11.5px/1.3 sans-serif;color:#7f8bab;margin-top:2px}
+.dm-item.on .dm-sub{color:#c8b3a0}
+@media (prefers-reduced-motion:reduce){#dm-panel,#dm-back{transition:none}}
+</style>
+<button id="dm-btn" aria-label="목차 메뉴" title="목차 (제품별 이동)">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+</button>
+<div id="dm-back"></div>
+<nav id="dm-panel" aria-label="제품 목차">
+  <div class="dm-head">
+    <div class="dm-ey">미래에셋 AI 패밀리</div>
+    <div class="dm-ttl">제품 목차</div>
+    <button id="dm-x" aria-label="닫기">&times;</button>
+  </div>
+  <div id="dm-list"></div>
+</nav>
+<script>
+(function(){
+  var SUB={ "MAGE":"지식 관문", "일손을 돕는 AI":"MAGIC · MOJO · MERLIN", "MYSTIC":"대시보드 챗봇",
+    "MARK":"학습 엔진", "MANA":"활용 아카이브", "MESH":"지식·문서 (사내 노션)",
+    "MAGNET":"대화·협업 (사내 슬랙)", "MAGMA":"Git 플랫폼" };
+  function slides(){ return [].slice.call(document.querySelectorAll('.slide')); }
+  function goto(idx){
+    if(typeof window.__deckGo==='function'){ window.__deckGo(idx); return true; }
+    return false;
+  }
+  var S=slides();
+  var items=[{label:'표지 · 개요', sub:'미래에셋 AI 패밀리', idx:0}];
+  S.forEach(function(s,idx){
+    var h=s.querySelector('.cover-t');
+    if(h && h.textContent.trim()){ var t=h.textContent.trim(); items.push({label:t, sub:SUB[t]||'', idx:idx}); }
+  });
+  var panel=document.getElementById('dm-panel'), back=document.getElementById('dm-back'),
+      btn=document.getElementById('dm-btn'), list=document.getElementById('dm-list');
+  items.forEach(function(it,k){
+    var b=document.createElement('button'); b.className='dm-item'; b.dataset.idx=it.idx;
+    b.innerHTML='<span class="dm-n">'+(k<10?'0':'')+k+'</span><span><span>'+it.label+'</span>'
+      +(it.sub?'<span class="dm-sub">'+it.sub+'</span>':'')+'</span>';
+    b.addEventListener('click',function(e){ e.stopPropagation(); goto(it.idx); close(); });
+    list.appendChild(b);
+  });
+  function markCurrent(){
+    var cur=-1, all=slides();
+    for(var j=0;j<all.length;j++){ if(all[j].classList.contains('active')){cur=j;break;} }
+    var best=0; items.forEach(function(it,k){ if(it.idx<=cur) best=k; });
+    [].forEach.call(list.children,function(c,k){ c.classList.toggle('on', k===best); });
+  }
+  var open=false;
+  function openMenu(){ open=true; markCurrent(); panel.classList.add('open'); back.classList.add('open'); }
+  function close(){ open=false; panel.classList.remove('open'); back.classList.remove('open'); }
+  btn.addEventListener('click',function(e){ e.stopPropagation(); open?close():openMenu(); });
+  document.getElementById('dm-x').addEventListener('click',function(e){ e.stopPropagation(); close(); });
+  back.addEventListener('click',function(e){ e.stopPropagation(); close(); });
+  panel.addEventListener('click',function(e){ e.stopPropagation(); });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&open){ close(); } },true);
+})();
+</script>
