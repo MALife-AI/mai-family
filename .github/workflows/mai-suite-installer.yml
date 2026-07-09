@@ -1,0 +1,129 @@
+name: "MAI Suite Installer (Windows)"
+
+# mai-family 허브에서 MAGIC + MOJO + MERLIN 을 하나의 설치본(MAI-Suite-Setup.exe)으로 번들.
+# mai-family 엔 제품 소스가 없으므로:
+#   - MOJO : 레포를 체크아웃해 standalone 을 빌드(그리고 MOJO 의 installer/suite/mai-suite.nsi 사용)
+#   - MAGIC/MERLIN : 각 레포 릴리즈에서 산출물 다운로드
+# 크로스레포(비공개) 접근을 위해 mai-family 레포 시크릿 PAT 필요
+#   (repo read 권한: MALife-AI/MOJO, MALife-AI/MAGIC, MALife-AI/MERLIN 및 릴리즈)
+# 산출: MAI-Suite-Setup.exe (아티팩트)
+
+on:
+  workflow_dispatch:
+    inputs:
+      mojo_ref:
+        description: "MOJO 소스 ref (브랜치/태그)"
+        required: false
+        default: "main"
+      magic_tag:
+        description: "MAGIC 릴리즈 태그"
+        required: false
+        default: "magic-tauri-v1.38.0"
+      merlin_tag:
+        description: "MERLIN dropins jar 릴리즈 태그"
+        required: false
+        default: "merlin-dropins-v0.1.0"
+
+permissions:
+  contents: read
+
+jobs:
+  build-suite:
+    name: Build MAI Suite Installer (Windows)
+    runs-on: [self-hosted, windows]
+    env:
+      FAMILY_PAT: ${{ secrets.PAT }}
+    steps:
+      - name: Guard — PAT 시크릿 확인
+        if: ${{ env.FAMILY_PAT == '' }}
+        run: |
+          echo "::error::PAT 시크릿이 없습니다. MOJO/MAGIC/MERLIN read 권한 PAT 를 mai-family 레포 시크릿(PAT)으로 추가하세요."
+          exit 1
+
+      # mai-family 자체 소스는 쓰지 않음 — 스위트 소스(.nsi, standalone 빌드 스크립트)는 MOJO 에 있음
+      - name: Checkout MOJO (suite source)
+        uses: actions/checkout@v4
+        with:
+          repository: MALife-AI/MOJO
+          ref: ${{ github.event.inputs.mojo_ref || 'main' }}
+          token: ${{ secrets.PAT }}
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install deps
+        run: npm install
+
+      - name: Bundle MOJO (esbuild)
+        run: npm run bundle
+
+      - name: Download Windows Node runtime
+        shell: bash
+        run: |
+          NODE_VER=$(node -p "process.versions.node")
+          curl -fL --retry 3 -o node-win.zip \
+            "https://nodejs.org/dist/v${NODE_VER}/node-v${NODE_VER}-win-x64.zip"
+
+      - name: Create MOJO win-x64 standalone
+        shell: bash
+        run: |
+          node scripts/create-standalone-package.js \
+            --target win-x64 --node-archive node-win.zip --out-dir dist/standalone
+
+      - name: Extract MOJO standalone
+        shell: pwsh
+        run: |
+          Expand-Archive -Path dist/standalone/qwen-code-win-x64.zip -DestinationPath dist/standalone/extracted -Force
+          $nodeExe = Get-ChildItem -Path dist/standalone/extracted -Recurse -Filter node.exe | Select-Object -First 1
+          if (-not $nodeExe) { Write-Error "node.exe not found"; exit 1 }
+          # node.exe 는 packageRoot/node/ 에 있음 → 부모(packageRoot)를 STANDALONE_DIR 로.
+          "STANDALONE_DIR=$(Split-Path $nodeExe.DirectoryName -Parent)" | Out-File -FilePath $env:GITHUB_ENV -Append
+
+      - name: Download MAGIC setup.exe (cross-repo)
+        shell: bash
+        env:
+          GH_TOKEN: ${{ secrets.PAT }}
+        run: |
+          gh release download "${{ github.event.inputs.magic_tag || 'magic-tauri-v1.38.0' }}" \
+            -R MALife-AI/MAGIC -p "MAGIC_*_x64-setup.exe" -O magic-setup.exe
+          ls -la magic-setup.exe
+
+      - name: Download MERLIN dropins jars (cross-repo)
+        shell: bash
+        env:
+          GH_TOKEN: ${{ secrets.PAT }}
+        run: |
+          mkdir -p merlin
+          gh release download "${{ github.event.inputs.merlin_tag || 'merlin-dropins-v0.1.0' }}" -R MALife-AI/MERLIN -p "*.jar" -D merlin
+          ls -la merlin
+
+      - name: Install NSIS
+        run: choco install nsis -y --no-progress
+
+      - name: Build suite installer
+        shell: pwsh
+        run: |
+          $out = Join-Path $PWD "MAI-Suite-Setup.exe"
+          $magic = Join-Path $PWD "magic-setup.exe"
+          $merlin = Join-Path $PWD "merlin"
+          # 한글 깨짐 방지 — .nsi 를 UTF-8 BOM 으로 저장(makensis 가 UTF-8 로 파싱)
+          $nsi = "installer\suite\mai-suite.nsi"
+          $txt = Get-Content $nsi -Raw -Encoding UTF8
+          [System.IO.File]::WriteAllText((Resolve-Path $nsi), $txt, (New-Object System.Text.UTF8Encoding($true)))
+          & "C:\Program Files (x86)\NSIS\makensis.exe" `
+            "/DSTANDALONE_DIR=$env:STANDALONE_DIR" `
+            "/DMAGIC_SETUP=$magic" `
+            "/DMERLIN_DIR=$merlin" `
+            "/DOUTFILE=$out" `
+            installer\suite\mai-suite.nsi
+          if (-not (Test-Path $out)) { Write-Error "suite installer not produced"; exit 1 }
+          Get-Item $out | Select-Object Name, Length
+
+      - name: Upload suite installer
+        uses: actions/upload-artifact@v4
+        with:
+          name: MAI-Suite-installer-windows
+          path: MAI-Suite-Setup.exe
+          if-no-files-found: error
