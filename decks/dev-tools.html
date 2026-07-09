@@ -423,6 +423,10 @@
     }
     /* 세로 화면에서 항상 1열로 펴서 각 칸이 충분히 커지도록 */
     .feat,.three,.gal,.grid2,.stats,.imp{ grid-template-columns:1fr }
+    /* 인라인 가로 다이어그램(그리드/플렉스)을 세로 화면에서 1열로 펴 잘림 방지 */
+    .slide [style*="grid-template-columns"]{ grid-template-columns:1fr !important }
+    .slide [style*="display:flex"]{ flex-direction:column !important; align-items:stretch !important }
+    .slide [style*="display:flex"] > [style*="flex:0 0 auto"]{ transform:rotate(90deg); align-self:center }
   }
 </style>
 
