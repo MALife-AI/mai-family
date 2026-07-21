@@ -15,7 +15,7 @@
     --border:#24314F; --border2:#35476E;
     --accent:#FF9A57; --accent-fill:#F5813C; --accent-soft:rgba(245,129,60,.14);
     --arcane:#927FF8; --good:#46C08A;
-    --core:#F5813C; --biz:#6EA8FF; --sup:#927FF8;
+    --biz:#6EA8FF; --sup:#927FF8;
   }
   @media (prefers-color-scheme: light){
     :root{
@@ -24,7 +24,7 @@
       --border:#DCE2EE; --border2:#C3CBDD;
       --accent:#D9540F; --accent-fill:#F37021; --accent-soft:#FBE7D9;
       --arcane:#5B4CD1; --good:#1C8F63;
-      --core:#F37021; --biz:#2E6BD6; --sup:#5B4CD1;
+      --biz:#2E6BD6; --sup:#5B4CD1;
     }
   }
   *{box-sizing:border-box}
@@ -42,38 +42,50 @@
   .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;
     color:var(--accent);font-weight:700;display:flex;align-items:center;gap:9px;margin:0 0 18px}
   .eyebrow::before{content:"";width:24px;height:2px;background:var(--accent-fill)}
-  h1{font-size:clamp(34px,6.5vw,72px);line-height:1.02;letter-spacing:-.03em;font-weight:850;margin:0}
+  h1{font-size:clamp(30px,5.6vw,62px);line-height:1.05;letter-spacing:-.03em;font-weight:850;margin:0}
   h2{font-size:clamp(24px,3.6vw,40px);line-height:1.08;letter-spacing:-.02em;font-weight:820;margin:0 0 6px}
-  .lede{font-size:clamp(16px,2.1vw,22px);color:var(--muted);max-width:60ch;margin:22px 0 0;line-height:1.5}
-  .k{color:var(--ink);font-weight:700}
+  .lede{font-size:clamp(15px,1.9vw,20px);color:var(--muted);max-width:66ch;margin:22px 0 0;line-height:1.55}
   b.hot{color:var(--accent);font-weight:800}
 
+  /* cover — 기술 × 마법 */
+  .cover{background:
+     radial-gradient(120% 90% at 82% 12%, color-mix(in srgb,var(--arcane) 20%,transparent), transparent 60%),
+     radial-gradient(90% 80% at 10% 96%, var(--accent-soft), transparent 55%)}
+  .cover .mg{color:var(--accent);position:relative}
+  .cover .quote{font-size:clamp(11px,1.4vw,14px);color:var(--faint);font-family:var(--mono);margin:20px 0 0}
+  .names{display:flex;flex-wrap:wrap;gap:10px 22px;margin:24px 0 0;font-size:clamp(13px,1.5vw,16px)}
+  .names span{color:var(--muted)} .names b{color:var(--ink);font-family:var(--mono);font-weight:800}
+  .names .gl{color:var(--arcane);font-weight:700;font-family:var(--font)}
+
   /* core cards */
-  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:34px}
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:30px}
   .c{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px 22px 20px;
     position:relative;overflow:hidden}
   .c::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--accent-fill)}
-  .c .nm{font-family:var(--mono);font-weight:800;font-size:22px;letter-spacing:.02em}
-  .c .rl{font-size:13px;color:var(--accent);font-weight:700;margin-top:2px}
-  .c .ds{font-size:15px;color:var(--muted);margin:12px 0 0;line-height:1.5}
+  .c .nm{font-family:var(--mono);font-weight:800;font-size:22px;letter-spacing:.02em;display:flex;align-items:baseline;gap:9px}
+  .c .nm .gl{font-family:var(--font);font-size:13px;font-weight:700;color:var(--arcane);letter-spacing:0}
+  .c .rl{font-size:12.5px;color:var(--accent);font-weight:700;margin-top:3px}
+  .c .ds{font-size:14.5px;color:var(--muted);margin:12px 0 0;line-height:1.5}
+  .c .ex{font-size:12.5px;color:var(--faint);margin:10px 0 0;line-height:1.45;border-top:1px dashed var(--border2);padding-top:9px}
   .c .live{position:absolute;top:16px;right:16px;font-family:var(--mono);font-size:10px;font-weight:800;
     color:#fff;background:var(--good);border-radius:6px;padding:3px 8px;letter-spacing:.06em}
-  .oneline{margin-top:26px;font-size:clamp(16px,2vw,20px);font-weight:700}
+  .oneline{margin-top:24px;font-size:clamp(15px,1.9vw,20px);font-weight:700}
 
   /* dept table */
-  .tbl{width:100%;border-collapse:collapse;margin-top:26px;font-size:clamp(14px,1.7vw,17px)}
-  .tbl td{padding:13px 14px;border-bottom:1px solid var(--border);vertical-align:top;line-height:1.45}
+  .tbl{width:100%;border-collapse:collapse;margin-top:24px;font-size:clamp(14px,1.7vw,17px)}
+  .tbl td{padding:12px 14px;border-bottom:1px solid var(--border);vertical-align:top;line-height:1.45}
   .tbl tr:last-child td{border-bottom:0}
   .tbl .dp{font-weight:800;white-space:nowrap;width:1%;color:var(--ink)}
   .tbl .u{color:var(--muted)}
   .tbl .u b{color:var(--accent);font-weight:800;font-family:var(--mono);font-size:.92em}
 
-  /* roadmap product rows */
-  .rows{display:flex;flex-direction:column;gap:12px;margin-top:26px}
-  .row{display:grid;grid-template-columns:150px 1fr auto;gap:16px;align-items:center;
-    background:var(--surface);border:1px solid var(--border);border-radius:13px;padding:15px 18px}
+  /* roadmap rows */
+  .rows{display:flex;flex-direction:column;gap:11px;margin-top:22px}
+  .row{display:grid;grid-template-columns:160px 1fr auto;gap:16px;align-items:center;
+    background:var(--surface);border:1px solid var(--border);border-radius:13px;padding:14px 18px}
   .row .head{display:flex;flex-direction:column;gap:2px}
-  .row .nm{font-family:var(--mono);font-weight:800;font-size:18px}
+  .row .nm{font-family:var(--mono);font-weight:800;font-size:18px;display:flex;align-items:baseline;gap:7px}
+  .row .nm .gl{font-family:var(--font);font-size:11.5px;font-weight:700;color:var(--arcane)}
   .row .rl{font-size:12px;color:var(--muted)}
   .row .ds{font-size:14.5px;color:var(--muted);line-height:1.45}
   .row .ds b{color:var(--ink);font-weight:700}
@@ -91,7 +103,7 @@
   .cat .sub{color:var(--faint);font-size:13.5px}
 
   /* timeline */
-  .tl{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:34px}
+  .tl{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:30px}
   .tl .col{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px}
   .tl .col .ph{font-family:var(--mono);font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
   .tl .col.s .ph{color:var(--good)} .tl .col.m .ph{color:var(--accent)} .tl .col.l .ph{color:var(--arcane)}
@@ -101,10 +113,10 @@
     background:var(--surface2);border:1px solid var(--border2)}
   .tl .why{margin:14px 0 0;font-size:13.5px;color:var(--muted);line-height:1.5}
 
-  .close-lines{display:flex;flex-direction:column;gap:14px;margin-top:30px}
+  .close-lines{display:flex;flex-direction:column;gap:14px;margin-top:26px}
   .cl{display:flex;align-items:baseline;gap:14px;font-size:clamp(17px,2.2vw,24px);font-weight:750}
   .cl .n{font-family:var(--mono);color:var(--accent);font-weight:800;font-size:.8em}
-  .foot-principle{margin-top:30px;font-family:var(--mono);font-size:13px;color:var(--faint);
+  .foot-principle{margin-top:28px;font-family:var(--mono);font-size:13px;color:var(--faint);
     border-top:1px solid var(--border);padding-top:16px}
 
   /* chrome */
@@ -128,27 +140,42 @@
 <div class="tag">MALife-AI · 미래에셋 AI 패밀리</div>
 <div class="deck" id="deck">
 
-  <!-- 1 COVER -->
-  <section class="slide on">
-    <p class="eyebrow">실행 브리프 · Executive Brief</p>
-    <h1>핵심은 셋.<br>다음은 일곱.</h1>
-    <p class="lede">지금 바로 쓰는 <b class="hot">MAGE·MAGIC·MOJO</b>로 문서·업무·개발의 반복을 줄이고,
-      나머지는 개발 소요를 따져 <span class="k">업무·보조 두 갈래</span>로 부서에 이어 붙입니다.</p>
+  <!-- 1 COVER · 기술 × 마법 -->
+  <section class="slide on cover">
+    <p class="eyebrow">Arthur C. Clarke · 제3법칙</p>
+    <h1>충분히 발달한 기술은<br><span class="mg">마법</span>과 구별할 수 없다.</h1>
+    <p class="lede">오늘의 AI가 바로 그 ‘충분히 발달한 기술’입니다. 마법처럼 느껴져 이름도 마법에서 가져왔습니다.
+      <b class="hot">그 마법을, 회사 안에서 만들었습니다.</b></p>
+    <div class="names">
+      <span><b>MAGE</b> <span class="gl">현자</span></span>
+      <span><b>MAGIC</b> <span class="gl">마법</span></span>
+      <span><b>MOJO</b> <span class="gl">마력</span></span>
+      <span><b>MYSTIC</b> <span class="gl">신비</span></span>
+      <span><b>MERLIN</b> <span class="gl">마법사</span></span>
+      <span><b>MANA</b> <span class="gl">마력의 원천</span></span>
+    </div>
+    <p class="quote">— 이름만 마법이 아니라, 하는 일도 그렇습니다.</p>
   </section>
 
   <!-- 2 CORE THREE -->
   <section class="slide">
     <p class="eyebrow">지금 가동 · The Core Three</p>
-    <h2>셋으로 시작한다</h2>
+    <h2>핵심은 셋 — 문(門) 하나에 손 둘</h2>
+    <p class="cat sub">읽고·쓰고·짓는 반복을 먼저 없앤다. 다음 일곱은 개발 소요대로 붙인다.</p>
     <div class="cards">
-      <div class="c"><span class="live">LIVE</span><div class="nm">MAGE</div><div class="rl">관문 · 거버넌스</div>
-        <div class="ds">모든 AI가 거치는 문. 문서를 모아 찾아주고, 권한·기록·차단을 쥔다.</div></div>
-      <div class="c"><span class="live">LIVE</span><div class="nm">MAGIC</div><div class="rl">업무 비서</div>
-        <div class="ds">말로 시키면 요약·정리·표가 끝난다. 개인 PC 전용, 자료는 안 나간다.</div></div>
-      <div class="c"><span class="live">LIVE</span><div class="nm">MOJO</div><div class="rl">코딩 도우미</div>
-        <div class="ds">반복 코딩을 대신한다. 승인 후 반영, 코드는 사내에만.</div></div>
+      <div class="c"><span class="live">LIVE</span>
+        <div class="nm">MAGE <span class="gl">현자</span></div><div class="rl">관문 · 거버넌스 · 운영</div>
+        <div class="ds">사내 문서를 AI가 읽는 형태로 모아 찾아주는 중심 관문. 권한·기록·차단과 서버·모델·정책까지 한 손에 쥔다.</div>
+        <div class="ex">“그 계약서 어디 있죠?” → 흩어진 문서에서 근거·출처와 함께 즉시.</div></div>
+      <div class="c"><span class="live">LIVE</span>
+        <div class="nm">MAGIC <span class="gl">마법</span></div><div class="rl">업무 비서 · 데스크톱 앱</div>
+        <div class="ds">말로 시키면 요약·정리·표가 끝나는 직원용 앱. 개인 PC 전용이라 자료가 밖으로 안 나간다.</div>
+        <div class="ex">약관 PDF 붙이고 “핵심만 요약” → 정리된 답과 엑셀 표까지.</div></div>
+      <div class="c"><span class="live">LIVE</span>
+        <div class="nm">MOJO <span class="gl">마력</span></div><div class="rl">코딩 도우미 · 터미널</div>
+        <div class="ds">반복 코딩을 대신하는 개발자용 도구. 변경은 승인 후 반영, 코드는 사내에만 머문다.</div>
+        <div class="ex">“중복 검증 로직 정리해줘” → 조각(diff)으로 제안, 사람이 확인 후 반영.</div></div>
     </div>
-    <p class="oneline">문(門) 하나에 손 둘 — <b class="hot">읽고, 쓰고, 짓는 반복</b>을 먼저 없앤다.</p>
   </section>
 
   <!-- 3 DEPT USE (CORE) -->
@@ -172,21 +199,21 @@
     <p class="cat sub">현장 업무·개발 성과로 이어지는 제품 — 개발 난도 순으로 붙인다.</p>
     <div class="rows">
       <div class="row">
-        <div class="head"><span class="nm">MYSTIC</span><span class="rl">데이터 챗봇</span></div>
-        <div class="ds"><b>대시보드에 말로 묻는다.</b> 숫자를 뒤지지 않아도 답이 온다.
-          <span class="dept">도움: <b>경영기획·계리·영업</b> — 실적·지표 즉시 확인</span></div>
+        <div class="head"><span class="nm">MYSTIC <span class="gl">신비</span></span><span class="rl">데이터 챗봇</span></div>
+        <div class="ds"><b>대시보드에 말로 묻는다.</b> 보던 차트를 읽어 뜻까지 풀어주니 숫자를 뒤질 필요가 없다.
+          <span class="dept">도움: <b>경영기획·계리·영업</b> — 실적·지표를 화면 그대로 즉시 확인</span></div>
         <div class="est s">단기 · PoC 완성</div>
       </div>
       <div class="row">
         <div class="head"><span class="nm">MAGMA</span><span class="rl">개발 플랫폼</span></div>
-        <div class="ds"><b>사내 Git·자동 빌드·배포</b>와 이력 앱을 한 곳에.
-          <span class="dept">도움: <b>IT·디지털</b> — 외부 유출 없는 개발 인프라</span></div>
+        <div class="ds"><b>사내 Git·자동 빌드·배포</b>에 커밋 이력 데스크톱 앱까지 한 곳에.
+          <span class="dept">도움: <b>IT·디지털</b> — 코드·아티팩트가 밖으로 안 나가는 개발 인프라</span></div>
         <div class="est m">중기 · 서버+클라이언트 구축</div>
       </div>
       <div class="row">
-        <div class="head"><span class="nm">MERLIN</span><span class="rl">레거시 IDE 코딩</span></div>
-        <div class="ds"><b>PRO-frame·Eclipse 안에서</b> 자리를 옮기지 않고 AI 도움.
-          <span class="dept">도움: <b>IT·디지털</b> — 레거시 코어 개발자</span></div>
+        <div class="head"><span class="nm">MERLIN <span class="gl">마법사</span></span><span class="rl">레거시 IDE 코딩</span></div>
+        <div class="ds"><b>PRO-frame·Eclipse 안에서</b> 자리를 옮기지 않고 인라인으로 돕는 코딩 조수.
+          <span class="dept">도움: <b>IT·디지털</b> — 레거시 코어를 다루는 개발자</span></div>
         <div class="est l">장기 · JDK 1.6 제약</div>
       </div>
     </div>
@@ -199,26 +226,26 @@
     <p class="cat sub">모두의 생산성·소통·기반을 넓히는 제품.</p>
     <div class="rows">
       <div class="row">
-        <div class="head"><span class="nm">MANA</span><span class="rl">활용 아카이브</span></div>
-        <div class="ds"><b>자주 쓰는 AI 기능을 꺼내 쓴다.</b> 디자인·발표·문서까지.
+        <div class="head"><span class="nm">MANA <span class="gl">마력의 원천</span></span><span class="rl">활용 아카이브</span></div>
+        <div class="ds"><b>자주 쓰는 AI 기능을 꺼내 쓴다.</b> 전문 도우미·디자인·발표자료까지 마켓플레이스에서 골라.
           <span class="dept">도움: <b>영업·마케팅·전 부서</b> — 반복 산출물 자동화</span></div>
         <div class="est s">단기 · 배포형 존재</div>
       </div>
       <div class="row">
         <div class="head"><span class="nm">MAGNET</span><span class="rl">사내 메신저</span></div>
-        <div class="ds"><b>채널·스레드로 소통.</b> 공지·일정을 한 흐름에서.
-          <span class="dept">도움: <b>전 부서</b> — 폐쇄망 협업</span></div>
+        <div class="ds"><b>채널·스레드로 소통</b>하고 공지·일정을 한 흐름에서. ‘/ai’로 대화 요약도.
+          <span class="dept">도움: <b>전 부서</b> — 외부 통신 없는 폐쇄망 협업</span></div>
         <div class="est s">단기 · 오픈소스 리브랜딩</div>
       </div>
       <div class="row">
         <div class="head"><span class="nm">MESH</span><span class="rl">지식·문서</span></div>
-        <div class="ds"><b>핸드북·위키를 한곳에.</b> 함께 쓰고 최신으로.
-          <span class="dept">도움: <b>전 부서·온보딩</b> — 사규·매뉴얼 표준화</span></div>
+        <div class="ds"><b>핸드북·위키를 한곳에.</b> 블록 에디터로 함께 쓰고 늘 최신으로.
+          <span class="dept">도움: <b>전 부서·온보딩</b> — 사규·매뉴얼·가이드 표준화</span></div>
         <div class="est m">중기 · 신규 앱 구축</div>
       </div>
       <div class="row">
         <div class="head"><span class="nm">MARK</span><span class="rl">학습 엔진</span></div>
-        <div class="ds"><b>규칙이 바뀌면 스스로 다시 배운다.</b> 손대지 않아도 정확도 유지.
+        <div class="ds"><b>규칙이 바뀌면 스스로 다시 배운다.</b> 손대지 않아도 달라진 상황에 정확도를 지킨다.
           <span class="dept">도움: <b>계리·리스크</b> — 사기탐지·수요예측 모델 유지보수</span></div>
         <div class="est m">중기 · 실모델 결합 필요</div>
       </div>
@@ -250,7 +277,7 @@
       <div class="cl"><span class="n">02</span><span>나머지는 <b class="hot">개발 소요</b>대로 붙인다 — 업무 셋, 보조 넷.</span></div>
       <div class="cl"><span class="n">03</span><span>제품마다 <b class="hot">닿는 부서</b>가 있다 — 넓히는 건 그다음.</span></div>
     </div>
-    <p class="foot-principle">전부 폐쇄망 · 관문은 하나(MAGE) · 검수 후 공개 — 원칙은 그대로.</p>
+    <p class="foot-principle">충분히 발달한 기술을, 회사 안에서 — 전부 폐쇄망 · 관문은 하나(MAGE) · 검수 후 공개.</p>
   </section>
 
 </div>
