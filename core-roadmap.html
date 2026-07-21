@@ -172,6 +172,19 @@
 
   /* timeline */
   /* Why Now (전략) */
+  /* 비교표 (업계 vs 우리) */
+  .land{color:var(--faint);font-size:clamp(12px,1.7cqi,14px);margin:6px 0 0;line-height:1.5}
+  .cmp{width:100%;border-collapse:collapse;margin-top:16px;font-size:clamp(12px,1.85cqi,15px)}
+  .cmp th,.cmp td{padding:9px 12px;border-bottom:1px solid var(--border);text-align:left;vertical-align:top;line-height:1.42}
+  .cmp thead th{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.05em;font-weight:800}
+  .cmp thead .them{color:var(--faint)} .cmp thead .us{color:var(--accent)}
+  .cmp .cat{font-weight:800;color:var(--ink);white-space:nowrap;width:1%}
+  .cmp .them{color:var(--muted)}
+  .cmp .us{color:var(--ink);font-weight:600;border-left:2px solid color-mix(in srgb,var(--accent-fill) 40%,transparent)}
+  .cmp tbody tr:last-child td{border-bottom:0}
+  .whyus{margin-top:16px;font-size:clamp(13px,1.9cqi,16px);font-weight:700;color:var(--ink)}
+  .whyus b{color:var(--accent)}
+
   .tl .col.warn .ph{color:var(--crit)}
   .tl .col.warn{border-color:color-mix(in srgb,var(--crit) 30%,var(--border))}
   .nextbar{margin-top:20px;background:var(--accent-soft);
@@ -258,6 +271,25 @@
       <div class="col s"><div class="ph">기회</div><h3>OSS 모델의 대두</h3>
         <p class="why">· 오픈소스 LLM이 상용 수준에 근접<br>· 인터넷 없이 사내 서버에서 직접 구동 가능<br>· ‘밖으로 안 나가는 최신 AI’가 처음으로 현실로</p></div>
     </div>
+  </section>
+
+  <!-- LANDSCAPE · 업계 현황과 차별점 -->
+  <section class="slide">
+    <p class="eyebrow">업계 현황과 차별점 · Landscape</p>
+    <h2>타사는 단일 기능, 우리는 통합 플랫폼</h2>
+    <p class="land">삼성생명·교보(GPT)·한화생명·신한·KB — OCR·챗봇·심사 자동화 등 단일 기능 중심 · 미래에셋증권은 네이버 HCX 온프레미스 구축. 대부분 외부 벤더 모델에 기대고, 다수가 파일럿 단계입니다.</p>
+    <table class="cmp">
+      <thead><tr><th></th><th class="them">업계 일반</th><th class="us">미래에셋 AI 패밀리</th></tr></thead>
+      <tbody>
+        <tr><td class="cat">AI 모델</td><td class="them">외부 벤더 의존 (네이버 HCX·ChatGPT 등)</td><td class="us">OSS 기반, 사내 서버에서 직접 구동</td></tr>
+        <tr><td class="cat">적용 범위</td><td class="them">OCR·챗봇 등 단일 기능(점 솔루션)</td><td class="us">지식·업무·개발·협업 10개 통합 플랫폼</td></tr>
+        <tr><td class="cat">데이터</td><td class="them">외부 클라우드 경유 사례 존재</td><td class="us">완전 폐쇄망, 외부 유출 없음</td></tr>
+        <tr><td class="cat">역량</td><td class="them">벤더·SI 종속, 지식이 사내에 안 남음</td><td class="us">사내 내재화, 역량이 축적됨</td></tr>
+        <tr><td class="cat">거버넌스</td><td class="them">기능별 산발 도입</td><td class="us">권한·감사를 한 곳에서 일원화</td></tr>
+        <tr><td class="cat">성숙도</td><td class="them">다수 파일럿·PoC 단계</td><td class="us">실제 사내 운영 단계 진입</td></tr>
+      </tbody>
+    </table>
+    <p class="whyus">왜 내재화가 유리한가 — <b>벤더 종속 없이</b> 자료는 사내에, 역량은 우리에게. 필요한 만큼 빠르게 만들고 하나로 통제합니다.</p>
   </section>
 
   <!-- 2 CORE THREE -->
