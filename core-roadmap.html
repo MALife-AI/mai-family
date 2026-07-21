@@ -13,7 +13,7 @@
     --font:"Pretendard","Spoqa Han Sans",-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","Segoe UI",Roboto,sans-serif;
     --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
     --bg:#0B1120; --bg2:#0E1729; --surface:#141E36; --surface2:#1A2440;
-    --ink:#EEF2FB; --muted:#9AA6C4; --faint:#6A7799;
+    --ink:#F5F8FF; --muted:#C2CBE2; --faint:#8B96B6;
     --border:#24314F; --border2:#35476E;
     --accent:#FF9A57; --accent-fill:#F5813C; --accent-soft:rgba(245,129,60,.14);
     --arcane:#927FF8; --good:#46C08A;
@@ -22,7 +22,7 @@
   @media (prefers-color-scheme: light){
     :root{
       --bg:#EEF1F7; --bg2:#FBFCFE; --surface:#FFFFFF; --surface2:#F1F4FA;
-      --ink:#141D33; --muted:#4E5872; --faint:#838DA6;
+      --ink:#0E1526; --muted:#39435B; --faint:#5A6480;
       --border:#DCE2EE; --border2:#C3CBDD;
       --accent:#D9540F; --accent-fill:#F37021; --accent-soft:#FBE7D9;
       --arcane:#5B4CD1; --good:#1C8F63;
@@ -35,7 +35,7 @@
     -webkit-font-smoothing:antialiased;overflow:hidden;
     display:flex;align-items:center;justify-content:center;
     background-image:radial-gradient(var(--grid) 1px,transparent 1px);background-size:26px 26px}
-  .deck{position:relative;container-type:size;width:min(100vw,calc(100vh*16/9));height:min(100vh,calc(100vw*9/16));margin:auto;
+  .deck{position:relative;container-type:size;width:100vw;height:56.25vw;margin:auto;
     background:var(--bg);box-shadow:0 0 0 100vmax var(--bg);perspective:1500px;perspective-origin:50% 47%;overflow:hidden}
   .slide{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;
     padding:clamp(20px,4.2cqi,60px) clamp(20px,4.5cqi,64px);max-width:1180px;margin:0 auto;overflow:hidden;
