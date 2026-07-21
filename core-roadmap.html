@@ -171,6 +171,16 @@
   .cat .sub{color:var(--faint);font-size:13.5px}
 
   /* timeline */
+  /* Why Now (전략) */
+  .tl .col.warn .ph{color:var(--crit)}
+  .tl .col.warn{border-color:color-mix(in srgb,var(--crit) 30%,var(--border))}
+  .nextbar{margin-top:20px;background:var(--accent-soft);
+    border:1px solid color-mix(in srgb,var(--accent-fill) 50%,transparent);border-radius:14px;
+    padding:16px 20px;font-size:clamp(13px,1.9cqi,17px);line-height:1.6;color:var(--ink)}
+  .nextbar b.tag{color:#fff;background:var(--accent-fill);font-family:var(--mono);font-weight:800;
+    font-size:.8em;border-radius:6px;padding:3px 9px;margin-right:10px;letter-spacing:.06em}
+  .nextbar b{color:var(--accent);font-weight:800}
+
   .tl{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:30px}
   .tl .col{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px}
   .tl .col .ph{font-family:var(--mono);font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
@@ -234,6 +244,21 @@
       <span><b>MANA</b></span>
     </div>
     <p class="quote">미래에셋생명 · AI혁신팀</p>
+  </section>
+
+  <!-- WHY NOW · 전략 -->
+  <section class="slide">
+    <p class="eyebrow">왜 사내 폐쇄망 AI인가 · Why Now</p>
+    <h2>못 했던 이유, 이제 가능한 이유</h2>
+    <div class="tl">
+      <div class="col warn"><div class="ph">한계 ①</div><h3>금융권 IT 환경</h3>
+        <p class="why">· 규제·망분리로 고객·계약 데이터는 밖으로 못 나감<br>· 외부 클라우드 AI(SaaS)는 사실상 사용 불가<br>· 폐쇄망에서 최신 AI를 쓸 방법이 없었음</p></div>
+      <div class="col warn"><div class="ph">한계 ②</div><h3>SI·SM 외주 계약</h3>
+        <p class="why">· 외주 개발·유지보수는 느리고 비싸며 벤더에 종속<br>· AI 발전 속도를 계약 주기가 따라가지 못함<br>· 지식·역량이 회사에 남지 않음</p></div>
+      <div class="col s"><div class="ph">기회</div><h3>OSS 모델의 대두</h3>
+        <p class="why">· 오픈소스 LLM이 상용 수준에 근접<br>· 인터넷 없이 사내 서버에서 직접 구동 가능<br>· ‘밖으로 안 나가는 최신 AI’가 처음으로 현실로</p></div>
+    </div>
+    <p class="nextbar"><b class="tag">NEXT</b>SI·SM 외주에 맡기던 개발을 <b>사내에서 직접</b>. OSS 모델을 사내 서버에서 돌려 자료는 회사 안에만 두고, 역량은 사내에 쌓이며, 보안·거버넌스는 MAGE로 통제합니다.</p>
   </section>
 
   <!-- 2 CORE THREE -->
