@@ -37,10 +37,9 @@
     background-image:radial-gradient(var(--grid) 1px,transparent 1px);background-size:26px 26px}
   .deck{position:relative;container-type:size;width:min(100vw,calc(100vh*16/9));height:min(100vh,calc(100vw*9/16));margin:auto;
     background:var(--bg);box-shadow:0 0 0 100vmax var(--bg);perspective:1500px;perspective-origin:50% 47%;overflow:hidden}
-  .slide{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:safe center;
-    padding:clamp(20px,4.5cqi,64px);max-width:1180px;margin:0 auto;overflow-y:auto;overflow-x:hidden;
-    opacity:0;pointer-events:none;will-change:transform,opacity;scrollbar-width:none}
-  .slide::-webkit-scrollbar{width:0;height:0;display:none}
+  .slide{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;
+    padding:clamp(20px,4.2cqi,60px) clamp(20px,4.5cqi,64px);max-width:1180px;margin:0 auto;overflow:hidden;
+    opacity:0;pointer-events:none;will-change:transform,opacity}
   .slide.active{opacity:1;pointer-events:auto;z-index:2;
     animation:flyIn 1.05s cubic-bezier(.24,.62,.2,1) both}
   .slide.leaving{opacity:0;z-index:1;pointer-events:none;
@@ -74,8 +73,8 @@
     .slide.active,.slide.leaving{animation:none!important;transform:none!important}
     .slide.active > *{animation:none!important}}
 
-  .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;
-    color:var(--accent);font-weight:700;display:flex;align-items:center;gap:9px;margin:0 0 18px}
+  .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--accent);font-weight:700;display:flex;align-items:center;gap:9px;margin:0 0 16px;flex-wrap:wrap}
   .eyebrow::before{content:"";width:24px;height:2px;background:var(--accent-fill)}
   h1{font-size:clamp(24px,6.4cqi,56px);line-height:1.06;letter-spacing:-.03em;font-weight:850;margin:0;text-wrap:balance;overflow-wrap:anywhere}
   h2{font-size:clamp(20px,4.3cqi,36px);line-height:1.08;letter-spacing:-.02em;font-weight:820;margin:0 0 6px}
@@ -93,14 +92,14 @@
   .names .gl{color:var(--arcane);font-weight:700;font-family:var(--font)}
 
   /* 세 법칙 */
-  .laws{display:flex;flex-direction:column;gap:clamp(10px,2cqi,20px);margin-top:22px}
+  .laws{display:flex;flex-direction:column;gap:clamp(8px,1.6cqi,16px);margin-top:16px}
   .law{display:grid;grid-template-columns:auto 1fr;gap:clamp(12px,2cqi,22px);align-items:baseline}
   .law .no{font-family:var(--mono);font-weight:800;color:var(--accent);
     font-size:clamp(12px,1.8cqi,15px);letter-spacing:.06em;white-space:nowrap}
-  .law .tx{font-size:clamp(15px,2.6cqi,24px);line-height:1.42;font-weight:600;color:var(--muted)}
+  .law .tx{font-size:clamp(14px,2.3cqi,20px);line-height:1.34;font-weight:600;color:var(--muted)}
   .law.third .tx{font-weight:800;color:var(--ink)}
   .law .tx .mg{color:var(--accent)}
-  .attrib{margin-top:22px;color:var(--faint);font-family:var(--mono);font-size:clamp(11px,1.6cqi,14px)}
+  .attrib{margin-top:14px;color:var(--faint);font-family:var(--mono);font-size:clamp(11px,1.6cqi,14px)}
 
   /* core cards */
   .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:30px}
@@ -125,9 +124,9 @@
   .tbl .u b{color:var(--accent);font-weight:800;font-family:var(--mono);font-size:.92em}
 
   /* roadmap rows */
-  .rows{display:flex;flex-direction:column;gap:11px;margin-top:22px}
+  .rows{display:flex;flex-direction:column;gap:9px;margin-top:16px}
   .row{display:grid;grid-template-columns:160px 1fr auto;gap:16px;align-items:center;
-    background:var(--surface);border:1px solid var(--border);border-radius:13px;padding:14px 18px}
+    background:var(--surface);border:1px solid var(--border);border-radius:13px;padding:11px 18px}
   .row .head{display:flex;flex-direction:column;gap:2px}
   .row .nm{font-family:var(--mono);font-weight:800;font-size:18px;display:flex;align-items:baseline;gap:7px}
   .row .nm .gl{font-family:var(--font);font-size:11.5px;font-weight:700;color:var(--arcane)}
@@ -189,7 +188,7 @@
 
   <!-- 0 THREE LAWS -->
   <section class="slide cover">
-    <p class="eyebrow">아서 C. 클라크의 세 법칙 · Clarke’s Three Laws</p>
+    <p class="eyebrow">클라크의 세 법칙 · Three Laws</p>
     <div class="laws">
       <div class="law"><span class="no">제1법칙</span><span class="tx">뛰어난 노(老)과학자가 가능하다 말하면 대개 옳고, 불가능하다 말하면 대개 틀리다.</span></div>
       <div class="law"><span class="no">제2법칙</span><span class="tx">가능의 한계를 아는 유일한 길은, 불가능 속으로 한 걸음 더 나아가 보는 것이다.</span></div>
@@ -222,17 +221,17 @@
     <p class="cat sub">읽고·쓰고·짓는 반복을 먼저 없앤다. 다음 일곱은 개발 소요대로 붙인다.</p>
     <div class="cards">
       <div class="c"><span class="live">LIVE</span>
-        <div class="nm">MAGE <span class="gl">현자</span></div><div class="rl">관문 · 거버넌스 · 운영</div>
-        <div class="ds">사내 문서를 AI가 읽는 형태로 모아 찾아주는 중심 관문. 권한·기록·차단과 서버·모델·정책까지 한 손에 쥔다.</div>
-        <div class="ex">“그 계약서 어디 있죠?” → 흩어진 문서에서 근거·출처와 함께 즉시.</div></div>
+        <div class="nm">MAGE <span class="gl">현자</span></div><div class="rl">지식 통합 · 거버넌스 · 운영</div>
+        <div class="ds">문서 통합·검색·분석 · 권한별 접근·감사 기록 · 추론 서버·모델·정책 운영</div>
+        <div class="ex">예: 계약서 위치·근거·출처 즉시 확인</div></div>
       <div class="c"><span class="live">LIVE</span>
         <div class="nm">MAGIC <span class="gl">마법</span></div><div class="rl">업무 비서 · 데스크톱 앱</div>
-        <div class="ds">말로 시키면 요약·정리·표가 끝나는 직원용 앱. 개인 PC 전용이라 자료가 밖으로 안 나간다.</div>
-        <div class="ex">약관 PDF 붙이고 “핵심만 요약” → 정리된 답과 엑셀 표까지.</div></div>
+        <div class="ds">문서 작성·요약·번역 대화형 처리 · 자주 쓰는 작업 버튼화 · 개인 PC 전용(자료 비유출)</div>
+        <div class="ex">예: 약관 PDF → 요약·엑셀 표 자동 생성</div></div>
       <div class="c"><span class="live">LIVE</span>
         <div class="nm">MOJO <span class="gl">마력</span></div><div class="rl">코딩 도우미 · 터미널</div>
-        <div class="ds">반복 코딩을 대신하는 개발자용 도구. 변경은 승인 후 반영, 코드는 사내에만 머문다.</div>
-        <div class="ex">“중복 검증 로직 정리해줘” → 조각(diff)으로 제안, 사람이 확인 후 반영.</div></div>
+        <div class="ds">반복 코딩 자동 처리 · 변경은 승인 후 반영 · 코드 사내 상주</div>
+        <div class="ex">예: 중복 로직 정리안 → diff 검토 후 반영</div></div>
     </div>
   </section>
 
@@ -258,19 +257,19 @@
     <div class="rows">
       <div class="row">
         <div class="head"><span class="nm">MYSTIC <span class="gl">신비</span></span><span class="rl">데이터 챗봇</span></div>
-        <div class="ds"><b>대시보드에 말로 묻는다.</b> 보던 차트를 읽어 뜻까지 풀어주니 숫자를 뒤질 필요가 없다.
+        <div class="ds"><b>대시보드 자연어 질의응답</b> · 차트 자동 해설 · 숫자 직접 조회 불필요
           <span class="dept">도움: <b>경영기획·계리·영업</b> — 실적·지표를 화면 그대로 즉시 확인</span></div>
         <div class="est s"><b>단기</b><span>26Q4 · PoC→GA</span></div>
       </div>
       <div class="row">
         <div class="head"><span class="nm">MAGMA</span><span class="rl">개발 플랫폼</span></div>
-        <div class="ds"><b>사내 Git·자동 빌드·배포</b>에 커밋 이력 데스크톱 앱까지 한 곳에.
+        <div class="ds"><b>사내 Git 저장소</b> · 자동 빌드·배포(CI/CD) · 커밋 이력 데스크톱 앱
           <span class="dept">도움: <b>IT·디지털</b> — 코드·아티팩트가 밖으로 안 나가는 개발 인프라</span></div>
         <div class="est m"><b>중기</b><span>27H1 · 서버+클라 GA</span></div>
       </div>
       <div class="row">
         <div class="head"><span class="nm">MERLIN <span class="gl">마법사</span></span><span class="rl">레거시 IDE 코딩</span></div>
-        <div class="ds"><b>PRO-frame·Eclipse 안에서</b> 자리를 옮기지 않고 인라인으로 돕는 코딩 조수.
+        <div class="ds"><b>기존 IDE(PRO-frame·Eclipse) 내장</b> · 인라인 코드 제안·검색 · 창 전환 불필요
           <span class="dept">도움: <b>IT·디지털</b> — 레거시 코어를 다루는 개발자</span></div>
         <div class="est l"><b>장기</b><span>27H2~ · 레거시 이식</span></div>
       </div>
@@ -285,25 +284,25 @@
     <div class="rows">
       <div class="row">
         <div class="head"><span class="nm">MANA <span class="gl">마력의 원천</span></span><span class="rl">활용 아카이브</span></div>
-        <div class="ds"><b>자주 쓰는 AI 기능을 꺼내 쓴다.</b> 전문 도우미·디자인·발표자료까지 마켓플레이스에서 골라.
+        <div class="ds"><b>분야별 전문 기능 모음</b> · 디자인·문서·발표 도구 · 마켓플레이스 선택 설치
           <span class="dept">도움: <b>영업·마케팅·전 부서</b> — 반복 산출물 자동화</span></div>
         <div class="est s"><b>단기</b><span>26Q4 · 사내 표준화</span></div>
       </div>
       <div class="row">
         <div class="head"><span class="nm">MAGNET</span><span class="rl">사내 메신저</span></div>
-        <div class="ds"><b>채널·스레드로 소통</b>하고 공지·일정을 한 흐름에서. ‘/ai’로 대화 요약도.
+        <div class="ds"><b>채널·스레드·DM</b> · 공지·일정 통합 · ‘/ai’ 대화 요약
           <span class="dept">도움: <b>전 부서</b> — 외부 통신 없는 폐쇄망 협업</span></div>
         <div class="est s"><b>단기</b><span>26Q4 · 브랜딩·SSO</span></div>
       </div>
       <div class="row">
         <div class="head"><span class="nm">MESH</span><span class="rl">지식·문서</span></div>
-        <div class="ds"><b>핸드북·위키를 한곳에.</b> 블록 에디터로 함께 쓰고 늘 최신으로.
+        <div class="ds"><b>문서·위키·핸드북 통합</b> · 블록 에디터 공동 편집 · 상시 최신화
           <span class="dept">도움: <b>전 부서·온보딩</b> — 사규·매뉴얼·가이드 표준화</span></div>
         <div class="est m"><b>중기</b><span>27H1 · 권한·검색 완성</span></div>
       </div>
       <div class="row">
         <div class="head"><span class="nm">MARK</span><span class="rl">학습 엔진</span></div>
-        <div class="ds"><b>규칙이 바뀌면 스스로 다시 배운다.</b> 손대지 않아도 달라진 상황에 정확도를 지킨다.
+        <div class="ds"><b>데이터 규칙 변화 자동 감지</b> · 무중단 재학습 · 정확도 자동 유지
           <span class="dept">도움: <b>계리·리스크</b> — 사기탐지·수요예측 모델 유지보수</span></div>
         <div class="est m"><b>중기</b><span>27H1 · 실모델 파일럿</span></div>
       </div>
