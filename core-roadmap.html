@@ -135,6 +135,9 @@
   .row .ds b{color:var(--ink);font-weight:700}
   .row .dept{display:block;margin-top:4px;font-size:12.5px;color:var(--faint)}
   .row .dept b{color:var(--accent);font-weight:700}
+  .rows.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .rows.two .row{grid-template-columns:1fr;align-items:start;gap:7px;padding:14px 18px}
+  .rows.two .row .est{justify-self:start}
   .est{font-family:var(--mono);letter-spacing:.03em;padding:6px 12px;border-radius:11px;
     white-space:nowrap;text-align:center;display:flex;flex-direction:column;gap:1px}
   .est b{font-size:11.5px;font-weight:800}
@@ -201,8 +204,7 @@
   <section class="slide cover">
     <p class="eyebrow">제3법칙, 그리고 우리 · Why “Magic”</p>
     <h1>충분히 발달한 기술은<br><span class="mg">마법</span>과 구별할 수 없다.</h1>
-    <p class="lede">오늘의 AI는 클라크가 말한 그 ‘충분히 발달한 기술’입니다. 우리는 그 기술을 회사 내부에서 직접 구현하고,
-      열 개의 제품에 마법의 이름을 새겼습니다. <b class="hot">이름은 마법에서, 작동은 철저히 기술에서.</b></p>
+    <p class="lede">오늘의 AI는 클라크가 말한 그 ‘충분히 발달한 기술’입니다.<br>우리는 그 기술을 회사 내부에서 직접 구현했고, 열 개의 제품 이름도 마법에서 따왔습니다.</p>
     <div class="names">
       <span><b>MAGE</b></span>
       <span><b>MAGIC</b></span>
@@ -278,7 +280,7 @@
     <p class="eyebrow">추후 계획 ② · 보조 제품군</p>
     <div class="cat"><h2 style="margin:0">업무 환경을 지원하는 4종</h2><span class="badge sup">SUPPORT</span></div>
     <p class="cat sub">전 직원의 생산성·소통·협업 기반을 넓히는 제품입니다.</p>
-    <div class="rows">
+    <div class="rows two">
       <div class="row">
         <div class="head"><span class="nm">MANA</span><span class="rl">활용 아카이브</span></div>
         <div class="ds">· 분야별 전문 기능 모음<br>· 디자인·문서·발표 도구<br>· 마켓플레이스 선택 설치<span class="dept">도움: <b>영업·마케팅·전 부서</b> — 반복 산출물 자동화</span></div>
@@ -391,8 +393,8 @@
     g.fillStyle=r;g.fillRect(0,0,24,24);g.globalCompositeOperation='lighter';g.strokeStyle='rgba('+col+',.55)';g.lineWidth=1;
     g.beginPath();g.moveTo(2,12);g.lineTo(22,12);g.moveTo(12,2);g.lineTo(12,22);g.stroke();return s;});
   function tw(){return Math.random()*6.28;}
-  function ambient(n){for(var i=0;i<n;i++)bg.push({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.09,vy:-(Math.random()*.24+.05),r:Math.random()*2.6+1.8,life:0,max:300+Math.random()*260,tw:tw(),tws:Math.random()*.09+.03,ci:Math.random()*4|0,amp:.36});}
-  ambient(18);
+  function ambient(n){for(var i=0;i<n;i++)bg.push({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.09,vy:-(Math.random()*.24+.05),r:Math.random()*2.6+1.8,life:0,max:300+Math.random()*260,tw:tw(),tws:Math.random()*.09+.03,ci:Math.random()*4|0,amp:.5});}
+  ambient(32);
   function burst(){var cx=W*0.5,cy=H*0.46,n=20+(Math.random()*12|0);
     for(var i=0;i<n;i++){var ang=Math.random()*6.28,rad=Math.max(W,H)*(0.34+Math.random()*0.55);
       var tx=cx+(Math.random()-.5)*W*(0.55+Math.random()*0.3),ty=cy+(Math.random()-.5)*H*(0.5+Math.random()*0.3);
@@ -406,7 +408,7 @@
       ctx.globalAlpha=a<0?0:(a>1?1:a);ctx.drawImage(SPR[p.ci],p.x-sz/2,p.y-sz/2,sz,sz);
       if(bright){var s2=sz*0.5;ctx.drawImage(SPR[p.ci],p.x-s2/2,p.y-s2/2,s2,s2);}}
     ctx.globalAlpha=1;}
-  function tick(){draw(xB,bg,true,2.0,false);draw(xF,fg,false,1.6,true);if(bg.length<18&&Math.random()<0.2)ambient(1);requestAnimationFrame(tick);}
+  function tick(){draw(xB,bg,true,2.2,false);draw(xF,fg,false,1.6,true);if(bg.length<32&&Math.random()<0.35)ambient(1);requestAnimationFrame(tick);}
   tick();
   var last=null,deck=document.getElementById('deck')||document.body;
   try{new MutationObserver(function(){var a=document.querySelector('.slide.active');if(a&&a!==last){last=a;burst();}}).observe(deck,{attributes:true,subtree:true,attributeFilter:['class']});}catch(e){}
