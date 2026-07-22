@@ -340,6 +340,44 @@ b.hot,.mg,.cover .mg{color:var(--accent)!important}
 .c,.tl .col,.rows .row,.cmp,.dshot img,.shots img,.pat,.goodc,.flow-row,.nextbar,
 figure,.card,.stat,.map-shell,.deck-card,.est,.badge,.chip{box-shadow:none!important}
 
+
+/* 핵심 제품 상세: 기능 텍스트 확대 + 간격 확대(빈 공간 채움) */
+.dfeat li{font-size:clamp(16px,2.6cqmin,22px)!important;line-height:1.5!important;padding-left:18px!important}
+.dfeat li::before{font-size:1.1em!important;left:3px!important}
+.dfeat ul{gap:clamp(9px,1.5cqmin,16px)!important}
+.dgrp{font-size:clamp(13px,1.95cqmin,16px)!important;margin-bottom:10px!important}
+.dcols{gap:16px 32px!important}
+.dshot figcaption{font-size:clamp(12.5px,1.7cqmin,15px)!important}
+
+
+/* 로드맵 카드: 글씨 대폭 확대 + 여백 채움 */
+.row{grid-template-columns:230px 1fr!important;padding:18px 26px!important;align-items:start!important}
+.rows.two .row{grid-template-columns:1fr!important}
+.rows{gap:14px!important}
+.row .nm{font-size:clamp(22px,3cqmin,30px)!important}
+.row .rl{font-size:clamp(13.5px,1.9cqmin,17px)!important;margin-top:3px!important}
+.row .ds{font-size:clamp(18px,2.6cqmin,24px)!important;line-height:1.7!important}
+.row .dept{font-size:clamp(14px,2cqmin,18px)!important;margin-top:11px!important;line-height:1.4!important}
+
+
+/* rollout 2열 유지 */
+.tl.two-col{grid-template-columns:1fr 1fr!important}
+/* 부서 표 확대 */
+.tbl{font-size:clamp(15px,2.3cqmin,20px)!important}
+.tbl td{padding:14px 16px!important}
+.tbl .u b{font-size:.95em!important}
+/* 상세 기능: 하단 여백 채우도록 더 크게+간격 */
+.dfeat li{font-size:clamp(16px,2.75cqmin,23px)!important;line-height:1.5!important}
+.dfeat ul{gap:clamp(11px,1.9cqmin,20px)!important}
+.dgrp{font-size:clamp(13.5px,2cqmin,17px)!important;margin-bottom:12px!important}
+/* rollout 카드 텍스트 확대 */
+.tl.two-col .why{font-size:clamp(15px,2.2cqmin,19px)!important;line-height:1.7!important}
+.tl.two-col h3{font-size:clamp(19px,2.6cqmin,24px)!important}
+.tl.two-col .chip{font-size:clamp(13px,1.8cqmin,16px)!important}
+/* 마무리 3줄 확대 */
+.cl{font-size:clamp(18px,2.7cqmin,26px)!important}
+.foot-principle{font-size:clamp(13px,1.7cqmin,16px)!important}
+
 </style>
 </head>
 <body>
@@ -520,7 +558,7 @@ figure,.card,.stat,.map-shell,.deck-card,.est,.badge,.chip{box-shadow:none!impor
     <p class="eyebrow">배포 계획 · Rollout</p>
     <h2>누구에게 먼저 배포하나</h2>
     <p class="cat sub">리스크를 관리하는 조직부터 시작해, 현업으로 넓혀 갑니다.</p>
-    <div class="tl" style="grid-template-columns:1fr 1fr">
+    <div class="tl two-col">
       <div class="col s"><div class="ph">Phase 1 · 우선 배포</div><h3>거버넌스 조직</h3>
         <div class="chips"><span class="chip">AI혁신팀</span><span class="chip">IT본부</span><span class="chip">CISO</span></div>
         <p class="why">· 제품군을 먼저 쓰고 검증<br>· 보안 승인·거버넌스 통제 확립<br>· 실사용 피드백·리스크 점검 선행</p></div>
