@@ -1,8 +1,8 @@
-# mai-family 역할 간소화 — 1단계(기능 검증, 10 제품) → 2단계(역할별 3 제품)
+# mai-family 현황 보고 — STEP 1(기능 검증, 10 제품) → STEP 2(역할별 3 제품)
 
 작성 2026-09-18. 1단계에서 열 개로 쪼갠 것은 기능을 하나씩 바깥 제품에 대응시켜 검증하려는 실험이었다. 검증이 끝났으니 기능은 그대로 두고 역할(정의·개발·사용) 기준으로 셋으로 합친다. Step 2 의 근거 계획은 mai-suite/docs/SETS-PLAN.md(§1 세트, §7 MAI Support 통합), 정본 로스터는 mai-suite/sets.yaml.
 
-## 1단계 — 기능 검증 (10 제품, 레포 = 제품)
+## STEP 1 — 기능 검증 (10 제품, 레포 = 제품)
 
 | 제품 | 한 줄 | 외부 솔루션 대응 | 실제 기반 |
 | --- | --- | --- | --- |
@@ -20,7 +20,7 @@
 
 Step 1 의 특징: 제품이 레포 단위로 열 개 나란히 있고, 배포는 통합본 하나(MAI-Suite-Setup.exe + 서버 완성본). 세트·에디션 개념 없음. MANA·MARK 는 산출물 없음.
 
-## 2단계 — 역할별 3 제품, 트릴로지 (2026-09-18 Liam 지시)
+## STEP 2 — 역할별 3 제품 (2026-09-18 Liam 지시)
 
 I 운영 = MAGE(정한다) · II 개발 = MAGIC(만든다) · III 현업 = MAI Support(쓴다).
 
@@ -30,7 +30,7 @@ I 운영 = MAGE(정한다) · II 개발 = MAGIC(만든다) · III 현업 = MAI S
 | --- | --- | --- | --- |
 | **I · MAGE** (운영) | MAGE 코어 + MANA + MARK | **LLMOps + IAM 플랫폼** — LiteLLM/Portkey 게이트웨이 + Okta 식 권한 정의 + 모델 서빙(vLLM) + 스킬 레지스트리 | 파일 원본(vault)·모델 게이트웨이·**그래프와 파일의 IAM 정의까지만**. 지식그래프 기능·뷰어는 MAI Support 로 이관 |
 | **II · MAGIC** (개발) | MAGIC + MOJO + MERLIN + MAGMA + MANA | **Claude Desktop + Claude Code + IDE 확장 + GitHub** 를 한 설치본으로 — "Claude for Developers + GitHub Copilot 스위트" 격 | 개발자 클라이언트 묶음(MAGIC-Setup.exe) + MAGMA 서버. 모델은 MAGE 게이트웨이 |
-| **III · MAI Support** (현업) | MESH + MAGNET + 지식그래프(MAGE 에서 이관) + 공통 셸 | **Notion + Slack + 사내 지식그래프(Glean/Neo4j Bloom 식 뷰어)** 를 한 로그인·한 화면으로 — "Atlassian Confluence+Slack+Glean 통합" 격 | 하나의 서비스. 권한 판정은 MAGE IAM 에 위임, 추출 LLM 은 MAGE 게이트웨이 |
+| **III · MAI Support** (현업) | MESH + MAGNET + 지식그래프 + 공통 셸 — 구성 방식은 A·B 두 안(아래) | **Notion + Slack + 사내 지식그래프(Glean/Neo4j Bloom 식 뷰어)** 를 한 로그인·한 화면으로 — "Atlassian Confluence+Slack+Glean 통합" 격 | 하나의 서비스. 권한 판정은 MAGE IAM 에 위임, 추출 LLM 은 MAGE 게이트웨이 |
 | (세트 밖) MYSTIC | — | Tableau Pulse | 별도 작업 |
 
 ### 구성요소별 매핑 (Step 2 에서 달라지는 것만)
@@ -43,7 +43,18 @@ I 운영 = MAGE(정한다) · II 개발 = MAGIC(만든다) · III 현업 = MAI S
 | MAGMA 데스크톱 | MAI-Suite-Setup.exe 선택 항목 | MAGIC-Setup.exe 기본 항목 | GitHub Desktop 격 |
 | MESH·MAGNET 클라이언트 | 선택 항목 | MAI-Support-Setup.exe | Notion·Slack 데스크톱 격 |
 
-### Step 2 안의 MAGMA — MAGIC 에 편입, "프롬프트가 곧 이력"
+### 현업 묶음(MAI Support) — A안 · B안
+| | **A안 — MAGE 안에 기능으로** | **B안 — 별도 제품으로** |
+| --- | --- | --- |
+| 형태 | 문서·대화를 MAGE 화면으로 흡수, 지식그래프는 지금 자리 유지. 제품 2개(MAGE·MAGIC) | MESH·MAGNET 은 그대로 두고 공통 상단바·로그인만 씌움. 지식그래프를 MAGE 에서 이관. 제품 3개 |
+| 장점 | 로그인·권한이 이미 한 곳 · 그래프 이관 불필요 · 설치본 2개 | 지금 코드를 거의 안 고침 · MAGE 가 권한·모델만 맡아 가벼워짐 · 장애 격리 |
+| 단점 | MAGE 가 더 커진다(STEP 1 결론과 반대 방향) | 로그인 통일 필요 — MESH 쿠키 vs MAGNET Bearer 중 한쪽 전환 |
+| 비용 | MESH·MAGNET 을 MAGE 화면 안으로 = 사실상 화면 재작성 | 그래프 분리 1주 · 권한 API 2일 · 로그인 통일 3일 · 상단바 2일 |
+| 기간 | 2~3개월 | 2~3주 |
+| 판단 | 감사 대응은 가장 단순(권한이 한 군데). 단일 장애점 | 기능 경계 = 제품 경계. **실무 권고** |
+갈림길은 지식그래프 이관 가능성인데, 실측상 어렵지 않다: 코드 6.9천 줄에 MAGE 본체 접점 5곳, 저장만 405MB JSON → SQLite 전환이 선행 작업. 설치 정리(1주)는 A·B 어느 쪽이든 선행한다.
+
+### STEP 2 안의 MAGMA — MAGIC 에 편입, "프롬프트가 곧 이력"
 MAGMA 는 MAGIC 세트의 구성요소이면서 **바이브코딩 이력의 저장소**가 된다(근거 mai-suite/docs/SETS-PLAN.md §8).
 | 층 | 내용 | 외부 대응 |
 | --- | --- | --- |
