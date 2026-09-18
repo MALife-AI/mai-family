@@ -1,8 +1,8 @@
-# mai-family — Step 1(현행) → Step 2(3-제품 재편) 와 외부 솔루션 매핑
+# mai-family 역할 간소화 — 1단계(기능 검증, 10 제품) → 2단계(역할별 3 제품)
 
-작성 2026-09-18. Step 2 의 근거 계획은 mai-suite/docs/SETS-PLAN.md(§1 세트, §7 MAI Support 통합), 정본 로스터는 mai-suite/sets.yaml.
+작성 2026-09-18. 1단계에서 열 개로 쪼갠 것은 기능을 하나씩 바깥 제품에 대응시켜 검증하려는 실험이었다. 검증이 끝났으니 기능은 그대로 두고 역할(정의·개발·사용) 기준으로 셋으로 합친다. Step 2 의 근거 계획은 mai-suite/docs/SETS-PLAN.md(§1 세트, §7 MAI Support 통합), 정본 로스터는 mai-suite/sets.yaml.
 
-## Step 1 — 현행 mai-family (10 제품, 레포 = 제품)
+## 1단계 — 기능 검증 (10 제품, 레포 = 제품)
 
 | 제품 | 한 줄 | 외부 솔루션 대응 | 실제 기반 |
 | --- | --- | --- | --- |
@@ -20,15 +20,17 @@
 
 Step 1 의 특징: 제품이 레포 단위로 열 개 나란히 있고, 배포는 통합본 하나(MAI-Suite-Setup.exe + 서버 완성본). 세트·에디션 개념 없음. MANA·MARK 는 산출물 없음.
 
-## Step 2 — 3 제품 재편 (2026-09-18 Liam 지시)
+## 2단계 — 역할별 3 제품, 트릴로지 (2026-09-18 Liam 지시)
+
+I 운영 = MAGE(정한다) · II 개발 = MAGIC(만든다) · III 현업 = MAI Support(쓴다).
 
 세트 이름 = 밖에 보이는 제품명. 레포는 구성요소. MYSTIC 은 별도 작업(세트 밖).
 
 | 제품 | 구성요소 | 외부 솔루션 대응 (묶음 기준) | 역할 경계 |
 | --- | --- | --- | --- |
-| **MAGE** (운영) | MAGE 코어 + MANA + MARK | **LLMOps + IAM 플랫폼** — LiteLLM/Portkey 게이트웨이 + Okta 식 권한 정의 + 모델 서빙(vLLM) + 스킬 레지스트리 | 파일 원본(vault)·모델 게이트웨이·**그래프와 파일의 IAM 정의까지만**. 지식그래프 기능·뷰어는 MAI Support 로 이관 |
-| **MAGIC** (개발) | MAGIC + MOJO + MERLIN + MAGMA + MANA | **Claude Desktop + Claude Code + IDE 확장 + GitHub** 를 한 설치본으로 — "Claude for Developers + GitHub Copilot 스위트" 격 | 개발자 클라이언트 묶음(MAGIC-Setup.exe) + MAGMA 서버. 모델은 MAGE 게이트웨이 |
-| **MAI Support** (서비스) | MESH + MAGNET + 지식그래프(MAGE 에서 이관) + 공통 셸 | **Notion + Slack + 사내 지식그래프(Glean/Neo4j Bloom 식 뷰어)** 를 한 로그인·한 화면으로 — "Atlassian Confluence+Slack+Glean 통합" 격 | 하나의 서비스. 권한 판정은 MAGE IAM 에 위임, 추출 LLM 은 MAGE 게이트웨이 |
+| **I · MAGE** (운영) | MAGE 코어 + MANA + MARK | **LLMOps + IAM 플랫폼** — LiteLLM/Portkey 게이트웨이 + Okta 식 권한 정의 + 모델 서빙(vLLM) + 스킬 레지스트리 | 파일 원본(vault)·모델 게이트웨이·**그래프와 파일의 IAM 정의까지만**. 지식그래프 기능·뷰어는 MAI Support 로 이관 |
+| **II · MAGIC** (개발) | MAGIC + MOJO + MERLIN + MAGMA + MANA | **Claude Desktop + Claude Code + IDE 확장 + GitHub** 를 한 설치본으로 — "Claude for Developers + GitHub Copilot 스위트" 격 | 개발자 클라이언트 묶음(MAGIC-Setup.exe) + MAGMA 서버. 모델은 MAGE 게이트웨이 |
+| **III · MAI Support** (현업) | MESH + MAGNET + 지식그래프(MAGE 에서 이관) + 공통 셸 | **Notion + Slack + 사내 지식그래프(Glean/Neo4j Bloom 식 뷰어)** 를 한 로그인·한 화면으로 — "Atlassian Confluence+Slack+Glean 통합" 격 | 하나의 서비스. 권한 판정은 MAGE IAM 에 위임, 추출 LLM 은 MAGE 게이트웨이 |
 | (세트 밖) MYSTIC | — | Tableau Pulse | 별도 작업 |
 
 ### 구성요소별 매핑 (Step 2 에서 달라지는 것만)
